@@ -97,27 +97,27 @@
 		<constant value="25:3-28:4"/>
 		<constant value="__applySynthesisADT2AMNAbstractMachine"/>
 		<constant value="attributes"/>
-		<constant value="variables"/>
+		<constant value="concretevariables"/>
 		<constant value="26:12-26:15"/>
 		<constant value="26:12-26:20"/>
 		<constant value="26:4-26:20"/>
-		<constant value="27:17-27:20"/>
-		<constant value="27:17-27:31"/>
-		<constant value="27:4-27:31"/>
+		<constant value="27:25-27:28"/>
+		<constant value="27:25-27:39"/>
+		<constant value="27:4-27:39"/>
 		<constant value="__matchSynthesisAttributes2AMNElement"/>
 		<constant value="AttributeDef"/>
 		<constant value="at"/>
 		<constant value="el"/>
 		<constant value="Element"/>
-		<constant value="34:4-34:6"/>
-		<constant value="34:19-34:41"/>
-		<constant value="34:4-34:42"/>
-		<constant value="37:8-37:19"/>
-		<constant value="37:3-39:4"/>
+		<constant value="46:4-46:6"/>
+		<constant value="46:19-46:41"/>
+		<constant value="46:4-46:42"/>
+		<constant value="49:8-49:19"/>
+		<constant value="49:3-51:5"/>
 		<constant value="__applySynthesisAttributes2AMNElement"/>
-		<constant value="38:12-38:14"/>
-		<constant value="38:12-38:19"/>
-		<constant value="38:4-38:19"/>
+		<constant value="50:12-50:14"/>
+		<constant value="50:12-50:19"/>
+		<constant value="50:4-50:19"/>
 	</cp>
 	<field name="1" type="2"/>
 	<field name="3" type="4"/>

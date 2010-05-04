@@ -24,9 +24,21 @@ rule SynthesisADT2AMNAbstractMachine {
 	to
 		am : AMN!AbstractMachine (
 			name <- adt.name,
-			variables <- adt.attributes
+			concretevariables <- adt.attributes
 		)
+--	do {
+--		 for (s in adt.attributes ) {
+--	 		thisModule.giveName(s);
+--		 }
+--	}		
 }
+
+--rule giveName( s : Synthesis!AttributeDef ) {
+--	to
+--		e : AMN!Element (
+--			name <- s.name
+--		)
+--}
 
 rule SynthesisAttributes2AMNElement {
 	from
@@ -36,5 +48,5 @@ rule SynthesisAttributes2AMNElement {
 	to
 		el : AMN!Element (
 			name <- at.name
-		)
+ 		)
 }
