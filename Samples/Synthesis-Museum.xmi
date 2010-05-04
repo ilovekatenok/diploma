@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:syn="Synthesis" xmlns:syn-form="Formulae">
+  <syn:SchemaDef name="MuseumSchema" modules="/8"/>
+  <syn:MetaclassDef name="owl" instances="/9 /10 /11 /12 /13 /14 /15 /16 /17 /18 /19 /20 /21 /22 /47 /50 /53 /56 /59 /62 /65 /68"/>
+  <syn:MetaclassDef name="ontology" instances="/8"/>
+  <syn:MetaclassDef name="onProperty" instances="/47 /50 /53 /56 /59 /62 /65 /68"/>
+  <syn:MetaclassDef name="functionalProperty" instances="/47 /50 /53 /65"/>
+  <syn:MetaclassDef name="inverseFunctionalProperty" instances="/56 /59 /62 /68"/>
+  <syn:MetaclassDef name="transitiveProperty"/>
+  <syn:MetaclassDef name="symmetricProperty"/>
+  <syn:ModuleDef name="MuseumOwlOntology" classes="/2" containedClasses="/10 /20 /22 /18 /12 /14 /16 /47 /50 /53 /56 /59 /62 /65 /68" containedTypes="/9 /19 /21 /17 /11 /13 /15" schema="/0"/>
+  <syn:ADTDef name="Artist" classes="/1" typeInModule="/8" attributes="/31 /37 /57" subtypes="/11 /17"/>
+  <syn:ClassDef name="artist" classes="/1" instanceType="/9" classInModule="/8" subclasses="/12 /18"/>
+  <syn:ADTDef name="Painter" classes="/1" typeInModule="/8" attributes="/66" supertypes="/9"/>
+  <syn:ClassDef name="painter" classes="/1" instanceType="/11" classInModule="/8" superclasses="/10"/>
+  <syn:ADTDef name="Painting" classes="/1" typeInModule="/8" attributes="/41 /45" supertypes="/19"/>
+  <syn:ClassDef name="painting" classes="/1" instanceType="/13" classInModule="/8" superclasses="/20"/>
+  <syn:ADTDef name="Sculpture" classes="/1" typeInModule="/8" attributes="/33 /51" supertypes="/19"/>
+  <syn:ClassDef name="sculpture" classes="/1" instanceType="/15" classInModule="/8" superclasses="/20"/>
+  <syn:ADTDef name="Sculptor" classes="/1" typeInModule="/8" attributes="/60" supertypes="/9"/>
+  <syn:ClassDef name="sculptor" classes="/1" instanceType="/17" classInModule="/8" superclasses="/10"/>
+  <syn:ADTDef name="Artefact" classes="/1" typeInModule="/8" attributes="/35 /43 /48 /63" subtypes="/13 /15"/>
+  <syn:ClassDef name="artefact" classes="/1" instanceType="/19" classInModule="/8" subclasses="/14 /16"/>
+  <syn:ADTDef name="Museum" classes="/1" typeInModule="/8" attributes="/29 /39 /54"/>
+  <syn:ClassDef name="museum" classes="/1" instanceType="/21" instances="/77" classInModule="/8"/>
+  <syn:IntegerDef name="uint" unsigned="false"/>
+  <syn:IntegerDef name="int" unsigned="true"/>
+  <syn:StringDef name="string"/>
+  <syn:EnumDef name="boolean" values="/28 /27"/>
+  <syn:StringValueDef typeOfValue="/26" value="true"/>
+  <syn:StringValueDef typeOfValue="/26" value="false"/>
+  <syn:AttributeDef name="Museum.city" metaslot="/30" cardinality="1" attributeOf="/21" type="/25"/>
+  <syn:FrameDef name="metaslotOfMuseum.city" metaslotOf="/29"/>
+  <syn:AttributeDef name="Artist.firstName" metaslot="/32" cardinality="1" attributeOf="/9" type="/25"/>
+  <syn:FrameDef name="metaslotOfArtist.firstName" metaslotOf="/31"/>
+  <syn:AttributeDef name="Sculpture.material" metaslot="/34" cardinality="1" attributeOf="/15" type="/25"/>
+  <syn:FrameDef name="metaslotOfSculpture.material" metaslotOf="/33"/>
+  <syn:AttributeDef name="Artefact.year" metaslot="/36" cardinality="1" attributeOf="/19" type="/25"/>
+  <syn:FrameDef name="metaslotOfArtefact.year" metaslotOf="/35"/>
+  <syn:AttributeDef name="Artist.lastName" metaslot="/38" cardinality="1" attributeOf="/9" type="/25"/>
+  <syn:FrameDef name="metaslotOfArtist.lastName" metaslotOf="/37"/>
+  <syn:AttributeDef name="Museum.name" metaslot="/40" cardinality="1" attributeOf="/21" type="/25"/>
+  <syn:FrameDef name="metaslotOfMuseum.name" metaslotOf="/39"/>
+  <syn:AttributeDef name="Painting.technique" metaslot="/42" cardinality="1" attributeOf="/13" type="/25"/>
+  <syn:FrameDef name="metaslotOfPainting.technique" metaslotOf="/41"/>
+  <syn:AttributeDef name="Artefact.title" metaslot="/44" cardinality="1" attributeOf="/19" type="/25"/>
+  <syn:FrameDef name="metaslotOfArtefact.title" metaslotOf="/43"/>
+  <syn:AttributeDef name="Painting.hasPainter" metaslot="/46" cardinality="1" inverseAttribute="/66" classes="/47" attributeOf="/13" type="/11"/>
+  <syn:FrameDef name="metaslotOfPainting.hasPainter" metaslotOf="/45"/>
+  <syn:AssociationMetaclassDef name="Painting.hasPainterMetaclass" classes="/1 /3 /4" classInModule="/8" superclasses="/50" domain="/14" range="/12" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/68"/>
+  <syn:AttributeDef name="Artefact.hasArtist" metaslot="/49" cardinality="1" inverseAttribute="/57" classes="/50" attributeOf="/19" type="/9"/>
+  <syn:FrameDef name="metaslotOfArtefact.hasArtist" metaslotOf="/48"/>
+  <syn:AssociationMetaclassDef name="Artefact.hasArtistMetaclass" classes="/1 /3 /4" classInModule="/8" subclasses="/47 /53" domain="/20" range="/10" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/59"/>
+  <syn:AttributeDef name="Sculpture.hasSculptor" metaslot="/52" cardinality="1" inverseAttribute="/60" classes="/53" attributeOf="/15" type="/17"/>
+  <syn:FrameDef name="metaslotOfSculpture.hasSculptor" metaslotOf="/51"/>
+  <syn:AssociationMetaclassDef name="Sculpture.hasSculptorMetaclass" classes="/1 /3 /4" classInModule="/8" superclasses="/50" domain="/16" range="/18" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/62"/>
+  <syn:AttributeDef name="Museum.exhibites" metaslot="/55" inverseAttribute="/63" classes="/56" attributeOf="/21" type="/19"/>
+  <syn:FrameDef name="metaslotOfMuseum.exhibites" slots="/69" metaslotOf="/54"/>
+  <syn:AssociationMetaclassDef name="Museum.exhibitesMetaclass" classes="/1 /3 /5" classInModule="/8" domain="/22" range="/20" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/65"/>
+  <syn:AttributeDef name="Artist.creates" metaslot="/58" inverseAttribute="/48" classes="/59" attributeOf="/9" type="/19"/>
+  <syn:FrameDef name="metaslotOfArtist.creates" slots="/73" metaslotOf="/57"/>
+  <syn:AssociationMetaclassDef name="Artist.createsMetaclass" classes="/1 /3 /5" classInModule="/8" subclasses="/62 /68" domain="/10" range="/20" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/50"/>
+  <syn:AttributeDef name="Sculptor.sculpts" metaslot="/61" inverseAttribute="/51" classes="/62" attributeOf="/17" type="/15">
+    <initialValue xsi:type="syn:AssociationMetaclassDef" name="Artist.createsMetaclass" domain="/10" range="/20" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/50"/>
+  </syn:AttributeDef>
+  <syn:FrameDef name="metaslotOfSculptor.sculpts" slots="/75" metaslotOf="/60"/>
+  <syn:AssociationMetaclassDef name="Sculptor.sculptsMetaclass" classes="/1 /3 /5" classInModule="/8" superclasses="/59" domain="/18" range="/16" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/53"/>
+  <syn:AttributeDef name="Artefact.exhibited" metaslot="/64" cardinality="1" inverseAttribute="/54" classes="/65" attributeOf="/19" type="/21"/>
+  <syn:FrameDef name="metaslotOfArtefact.exhibited" metaslotOf="/63"/>
+  <syn:AssociationMetaclassDef name="Artefact.exhibitedMetaclass" classes="/1 /3 /4" classInModule="/8" domain="/20" range="/22" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/56"/>
+  <syn:AttributeDef name="Painter.paints" metaslot="/67" inverseAttribute="/45" classes="/68" attributeOf="/11" type="/13"/>
+  <syn:FrameDef name="metaslotOfPainter.paints" slots="/71" metaslotOf="/66"/>
+  <syn:AssociationMetaclassDef name="Painter.paintsMetaclass" classes="/1 /3 /5" classInModule="/8" superclasses="/59" domain="/12" range="/14" maxCard="-1" maxInverseCard="-1" minCard="0" minInverseCard="0" inverse="/47"/>
+  <syn:SlotDef name="min_card" values="/70" slotOf="/55"/>
+  <syn:IntegerValueDef value="1"/>
+  <syn:SlotDef name="min_card" values="/72" slotOf="/67"/>
+  <syn:IntegerValueDef value="0"/>
+  <syn:SlotDef name="min_card" values="/74" slotOf="/58"/>
+  <syn:IntegerValueDef value="0"/>
+  <syn:SlotDef name="min_card" values="/76" slotOf="/61"/>
+  <syn:IntegerValueDef value="0"/>
+  <syn:FrameDef name="MyMuseum" classes="/22"/>
+  <syn:ClassDef name="mutant" instanceType="/79"/>
+  <syn:ADTDef name="Mutant" attributes="/80"/>
+  <syn:AttributeDef name="mutantInvariant" attributeOf="/79" type="/81"/>
+  <syn:InvariantDef name="mutantInvariantBody" predicativeSpec="/82"/>
+  <syn-form:Predicate name="&lt;=" terms="/78 /83"/>
+  <syn-form:Predicate name="intersect" terms="/10 /84"/>
+  <syn-form:Predicate name="intersect" terms="/20 /22"/>
+</xmi:XMI>

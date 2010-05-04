@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amn="http://amn/1.0">
+  <amn:AbstractMachine name="ContextMuseumOwlOntology"/>
+  <amn:AbstractMachine name="Artist"/>
+  <amn:AbstractMachine name="Painter"/>
+  <amn:AbstractMachine name="Painting"/>
+  <amn:AbstractMachine name="Sculpture"/>
+  <amn:AbstractMachine name="Sculptor"/>
+  <amn:AbstractMachine name="Artefact"/>
+  <amn:AbstractMachine name="Museum"/>
+  <amn:AbstractMachine name="Mutant"/>
+</xmi:XMI>

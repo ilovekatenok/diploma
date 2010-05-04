@@ -1,0 +1,40 @@
+module Synthesis2AMN;
+create OUT:AMN from IN:Synthesis;
+
+-- =============================================================================
+-- RULES
+-- =============================================================================
+	
+rule SynthesisModule2AMNAbstractMachine {
+	from
+		m : Synthesis!ModuleDef(
+			m.oclIsTypeOf(Synthesis!ModuleDef)
+			) 
+	to
+		am : AMN!AbstractMachine (
+			name <- 'Context' + m.name
+		)
+}
+
+rule SynthesisADT2AMNAbstractMachine {
+	from
+		adt : Synthesis!ADTDef(
+			adt.oclIsTypeOf(Synthesis!ADTDef)
+			) 
+	to
+		am : AMN!AbstractMachine (
+			name <- adt.name,
+			variables <- adt.attributes
+		)
+}
+
+rule SynthesisAttributes2AMNElement {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		el : AMN!Element (
+			name <- at.name
+		)
+}
