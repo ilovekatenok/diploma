@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="amn"
+    nsURI="http://amn/1.0" nsPrefix="amn">
+  <eSubpackages name="AMNPredicate">
+    <eClassifiers xsi:type="ecore:EClass" name="Predicate"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BracketedPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConjunctionPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NegationPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DisjunctionPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ImplicationPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EquivalencePredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UniversalPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExistentialPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EqualsPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InequalityPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BelongsPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NonBelongsPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InclusionPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InclusionStrictPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NonInclusionPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NonInclusionStrictPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LessThanOrEqualPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StrictlyLessThanPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOrEqualPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StrictlyGreaterThanPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="AMNExpression">
+    <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionInBrackets" eSuperTypes="#//AMNExpression/PrimaryExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//AMNExpression/PrimaryExpressions">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="String" lowerBound="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//AMNExpression/BooleanExpression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Boolean" lowerBound="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConversionBoolean" eSuperTypes="#//AMNExpression/BooleanExpression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ArithmeticalExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteral" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Integer" lowerBound="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Difference" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UnaryMinus" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Modulo" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Puissance" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Successor" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Predecessor" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Maximum" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Minimum" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Cardinal" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeneralizedSum" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProduitGeneralized" eSuperTypes="#//AMNExpression/ArithmeticalExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequencesConstruction" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Sequences" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequencesNonEmpty" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequencesInjective" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequencesInjNonEmpty" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Permulations" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EmptySequence" eSuperTypes="#//AMNExpression/Sequences">
+      <eStructuralFeatures xsi:type="ecore:EReference"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceExtension" eSuperTypes="#//AMNExpression/SequencesConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TreesExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TreeConstructor" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TreeRoot" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TreeSons" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PrefixedFlattening" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PostfixedFlattening" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TreeSize" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TreeSymmetry" eSuperTypes="#//AMNExpression/TreesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CouplesExpressions" eSuperTypes="#//AMNExpression/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionsConstruction" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PartialFunctions" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TotalFunctions" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PartialInjections" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TotalInjections" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PartialSurjections" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TotalSurjections" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TotalBijections" eSuperTypes="#//AMNExpression/FunctionsConstruction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionsExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LambdaExpression" eSuperTypes="#//AMNExpression/FunctionsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EvaluationFunctions" eSuperTypes="#//AMNExpression/FunctionsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TransformedFunction" eSuperTypes="#//AMNExpression/FunctionsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TransformedRelation" eSuperTypes="#//AMNExpression/FunctionsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequencesExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceSize" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceFirstElement" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceLastElement" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceFront" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceTail" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expresison" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReverseSequence" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Concatenation" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expressoin" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InsertFront" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InsertTail" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RestrictFront" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RestrictTail" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcatGeneral" eSuperTypes="#//AMNExpression/SequencesExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RelationsExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Identity" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Inverse" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FirstProjection" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SecondProjection" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Composition" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DirectProduct" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ParallelProduct" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" lowerBound="2" upperBound="2"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflexiveClosure" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Closure" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Range" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          upperBound="-1" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DomainRestriction" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DomainSubstraction" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RangeRestriction" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SubstractionsRange" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Overwrite" eSuperTypes="#//AMNExpression/RelationsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SetOfRecords">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtensiveRecord">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RecordField">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SetsConstruction" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SetsExpressions" eSuperTypes="#//AMNExpression/Expression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ComprehensionSet" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Subsets" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FiniteSubsets" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SetExtension" eSuperTypes="#//AMNExpression/SetsExpressions"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Difference" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Union" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Intersection" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="2"
+          upperBound="2" eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeneralizedUnion" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="GeneralizedIntersection" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="QuantifiedUnion" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="QuantifiedIntersection" eSuperTypes="#//AMNExpression/SetsExpressions">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Expression" lowerBound="1"
+          eType="#//AMNExpression/Expression"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="AMNSubstitution">
+    <eClassifiers xsi:type="ecore:EClass" name="Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BlockSubstitution" eSuperTypes="#//AMNSubstitution/Substitution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Substitution" lowerBound="1"
+          eType="#//AMNSubstitution/Substitution"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IdentitySubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BecomesEqualSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PreconditionSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AssertionSubstitution" eSuperTypes="#//AMNSubstitution/Substitution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Substitution" lowerBound="1"
+          eType="#//AMNSubstitution/Substitution"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LimitedChoiceSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IfSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SelectSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CaseSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AnySubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LetSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BecomesEltSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BecomesSuchThatSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="VarSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CallSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SimultaneousSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WhileSubstitution" eSuperTypes="#//AMNSubstitution/Substitution"/>
+  </eSubpackages>
+  <eSubpackages name="AMNAbstractMachine">
+    <eClassifiers xsi:type="ecore:EClass" name="MachineAbstract">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Header" lowerBound="1"
+          eType="#//AMNAbstractMachine/Header"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="MachineAbstract" lowerBound="1"
+          eType="#//AMNAbstractMachine/MachineAbstractClause"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Header" eSuperTypes="#//AMNAbstractMachine/MachineAbstract"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MachineAbstractClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstract"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteVariablesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractConstantsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UsesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IncludesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConstraintsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SeesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PromotesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendsClause" eSuperTypes="#//AMNAbstractMachine/ConstraintsClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SetsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteConstantsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractConstantsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InitializationClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AssertionsClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InvariantClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractVariablesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+  </eSubpackages>
+  <eSubpackages name="AMNRefinement">
+    <eClassifiers xsi:type="ecore:EClass" name="Refinement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Header" lowerBound="1"
+          eType="#//AMNRefinement/HeaderClause"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Refinement" lowerBound="1"
+          eType="#//AMNRefinement/RefinementClause"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Refines" lowerBound="1"
+          eType="#//AMNRefinement/RefinesClause"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="HeaderClause" eSuperTypes="#//AMNRefinement/Refinement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RefinesClause" eSuperTypes="#//AMNRefinement/Refinement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RefinementClause" eSuperTypes="#//AMNRefinement/Refinement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SeesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IncludesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PromotesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SetsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteConstantsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PropertiesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteVariablesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractVariablesClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InvariantClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AssertionsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InitializationClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationsClause" eSuperTypes="#//AMNRefinement/RefinementClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PropertiesClause" eSuperTypes="#//AMNAbstractMachine/MachineAbstractClause"/>
+  </eSubpackages>
+  <eSubpackages name="AMNImplementation">
+    <eClassifiers xsi:type="ecore:EClass" name="Implementation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Header" lowerBound="1"
+          eType="#//AMNImplementation/Header"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Refines" lowerBound="1"
+          eType="#//AMNImplementation/RefinesClause"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Implementation" lowerBound="1"
+          eType="#//AMNImplementation/ImplementationClause"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Header" eSuperTypes="#//AMNImplementation/Implementation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RefinesClause" eSuperTypes="#//AMNImplementation/Implementation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ImplementationClause" eSuperTypes="#//AMNImplementation/Implementation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SeesClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ImportsClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PromotesClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtendsB0Clause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SetsClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteConstantsClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PropertiesClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValuesClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcreteVariablesClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InvariantClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AssertionsClause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="InitializationB0Clause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationsB0Clause" eSuperTypes="#//AMNImplementation/ImplementationClause"/>
+  </eSubpackages>
+</ecore:EPackage>
