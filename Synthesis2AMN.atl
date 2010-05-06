@@ -11,7 +11,8 @@ rule SynthesisModule2AMNAbstractMachine {
 			m.oclIsTypeOf(Synthesis!ModuleDef)
 			) 
 	to
-		am : AMN!AbstractMachine (
+		test
+	    am : AMN!AbstractMachine (
 			name <- 'Context' + m.name
 		)
 }
