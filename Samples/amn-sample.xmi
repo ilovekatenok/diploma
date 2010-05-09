@@ -1,29 +1,84 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:amn="http://amn/1.0">
-  <amn:AbstractMachine name="ContextMuseumOwlOntology"/>
-  <amn:AbstractMachine name="Artist" concretevariables="/10 /13 /21"/>
-  <amn:AbstractMachine name="Painter" concretevariables="/24"/>
-  <amn:AbstractMachine name="Painting" concretevariables="/15 /17"/>
-  <amn:AbstractMachine name="Sculpture" concretevariables="/11 /19"/>
-  <amn:AbstractMachine name="Sculptor" concretevariables="/22"/>
-  <amn:AbstractMachine name="Artefact" concretevariables="/12 /16 /18 /23"/>
-  <amn:AbstractMachine name="Museum" concretevariables="/9 /14 /20"/>
-  <amn:AbstractMachine name="Mutant" concretevariables="/25"/>
-  <amn:Element name="Museum.city"/>
-  <amn:Element name="Artist.firstName"/>
-  <amn:Element name="Sculpture.material"/>
-  <amn:Element name="Artefact.year"/>
-  <amn:Element name="Artist.lastName"/>
-  <amn:Element name="Museum.name"/>
-  <amn:Element name="Painting.technique"/>
-  <amn:Element name="Artefact.title"/>
-  <amn:Element name="Painting.hasPainter"/>
-  <amn:Element name="Artefact.hasArtist"/>
-  <amn:Element name="Sculpture.hasSculptor"/>
-  <amn:Element name="Museum.exhibites"/>
-  <amn:Element name="Artist.creates"/>
-  <amn:Element name="Sculptor.sculpts"/>
-  <amn:Element name="Artefact.exhibited"/>
-  <amn:Element name="Painter.paints"/>
-  <amn:Element name="mutantInvariant"/>
+  <amn:AbstractMachine>
+    <name>ContextMuseumOwlOntology</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/10 /13 /21 /26">
+    <name>Artist</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/24">
+    <name>Painter</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/15 /17">
+    <name>Painting</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/11 /19">
+    <name>Sculpture</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/22">
+    <name>Sculptor</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/12 /16 /18 /23">
+    <name>Artefact</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/9 /14 /20">
+    <name>Museum</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine concreteVariables="/25">
+    <name>Mutant</name>
+  </amn:AbstractMachine>
+  <amn:Variable>
+    <name>Museum.city</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artist.firstName</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Sculpture.material</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artefact.year</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artist.lastName</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Museum.name</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Painting.technique</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artefact.title</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Painting.hasPainter</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artefact.hasArtist</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Sculpture.hasSculptor</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Museum.exhibites</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artist.creates</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Sculptor.sculpts</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Artefact.exhibited</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>Painter.paints</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>mutantInvariant</name>
+  </amn:Variable>
+  <amn:Variable>
+    <name>artistInvariant</name>
+  </amn:Variable>
 </xmi:XMI>

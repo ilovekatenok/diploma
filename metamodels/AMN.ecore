@@ -18,7 +18,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteConstants" upperBound="-1"
         eType="#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteVariables" upperBound="-1"
-        eType="#//Element"/>
+        eType="#//Variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractMachine" eSuperTypes="#//Machine">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" eType="#//AMNPredicate/Predicate"/>

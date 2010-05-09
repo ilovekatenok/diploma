@@ -133,6 +133,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="selector" eType="#//SelectorDef"
         eOpposite="#//SelectorDef/selectorOf"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicativeSpec" eType="#//Formulae/Formula"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//Programs/Program"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectorDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -243,14 +244,18 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IntegerConstant" eSuperTypes="#//Formulae/Constant"/>
     <eClassifiers xsi:type="ecore:EClass" name="NonConstant" eSuperTypes="#//Formulae/Term">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Formulae/NonConstant"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Formulae/NonConstant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variableOfType" lowerBound="1"
+          eType="#//TypeDef"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionComprehension" eSuperTypes="#//Formulae/Constant">
       <eStructuralFeatures xsi:type="ecore:EReference" name="vars" lowerBound="1"
-          upperBound="-1" eType="#//Formulae/Variable" containment="true"/>
+          upperBound="-1" eType="#//Formulae/Variable"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula"/>
     </eClassifiers>
@@ -265,11 +270,16 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="classNameOf" lowerBound="1"
           eType="#//ClassDef"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeName" eSuperTypes="#//Formulae/Constant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributeNameOf" lowerBound="1"
+          eType="#//AttributeDef"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Formulae/NonConstant">
       <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
           eType="#//Formulae/Term"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BuiltInFunction" eSuperTypes="#//Formulae/FunctionCall"/>
     <eClassifiers xsi:type="ecore:EClass" name="SetPredicate" eSuperTypes="#//Formulae/Atom"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StringConstant" eSuperTypes="#//Formulae/Constant"/>
   </eSubpackages>
 </ecore:EPackage>
