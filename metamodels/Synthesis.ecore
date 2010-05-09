@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Synthesis"
-    nsURI="Synthesis" nsPrefix="syn">
+    nsURI="http://Synthesis.ecore" nsPrefix="syn">
   <eClassifiers xsi:type="ecore:EClass" name="SchemaDef" eSuperTypes="#//ModuleDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modules" upperBound="-1"
         eType="#//ModuleDef" eOpposite="#//ModuleDef/schema"/>
@@ -83,7 +83,7 @@
         eType="#//ADTDef" eOpposite="#//ADTDef/attributes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//TypeDef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//FrameDef #//Formulae/Term">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//FrameDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" eType="#//TypeDef"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
@@ -169,13 +169,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="IntegerValueDef" eSuperTypes="#//ValueDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
   </eClassifiers>
-  <eSubpackages name="Expressions" nsURI="http:///Synthesis.ecore/Expressions" nsPrefix="Expressions.syn">
+  <eSubpackages name="Expressions" nsURI="http://Synthesis.ecore/Expressions" nsPrefix="syn-expr">
     <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="#//Formulae/Term #//Expressions/Multiplier"/>
     <eClassifiers xsi:type="ecore:EClass" name="Multiplier"/>
     <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression"/>
     <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression"/>
   </eSubpackages>
-  <eSubpackages name="Programs" nsPrefix="">
+  <eSubpackages name="Programs" nsURI="http://Synthesis.ecore/Programs" nsPrefix="syn-prog">
     <eClassifiers xsi:type="ecore:EClass" name="Program"/>
     <eClassifiers xsi:type="ecore:EClass" name="RuleList" eSuperTypes="#//Programs/Program">
       <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="1"
@@ -189,20 +189,31 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
           eType="#//Programs/Program" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Formulae/Formula"/>
     <eClassifiers xsi:type="ecore:EClass" name="Rule">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="head" lowerBound="1"
+          eType="#//Formulae/Atom"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1"
+          eType="#//Formulae/Formula"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionalRule">
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
-          eType="#//Programs/Condition" containment="true"/>
+          eType="#//Formulae/Formula" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="block" lowerBound="1"
           eType="#//Programs/Block" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionalRule" eSuperTypes="#//Programs/Rule"/>
-    <eClassifiers xsi:type="ecore:EClass" name="IterativeRule" eSuperTypes="#//Programs/Rule"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IterativeRule">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+          eType="#//Formulae/Formula" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="block" lowerBound="1"
+          eType="#//Programs/Block" containment="true"/>
+    </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Formulae" nsURI="Formulae" nsPrefix="syn-form">
+  <eSubpackages name="Formulae" nsURI="http://Synthesis.ecore/Formulae" nsPrefix="syn-form">
     <eClassifiers xsi:type="ecore:EClass" name="QuantifiedFormula" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
+          eType="#//Formulae/Variable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="2"
@@ -224,19 +235,41 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExsistentiallyQuantifiedFormula" eSuperTypes="#//Formulae/QuantifiedFormula"/>
     <eClassifiers xsi:type="ecore:EClass" name="UniversallyQuantifiedFormula" eSuperTypes="#//Formulae/QuantifiedFormula"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Formula" eSuperTypes="#//Formulae/Term"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TypedVariable" eSuperTypes="#//Formulae/Term #//ElementDef"/>
-    <eClassifiers xsi:type="ecore:EClass" name="TypeExpression">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeDef"
-          containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Formula">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Term"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Predicate" eSuperTypes="#//Formulae/Formula">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Formulae/Term">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NonConstant" eSuperTypes="#//Formulae/Term">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Formulae/NonConstant"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CollectionComprehension" eSuperTypes="#//Formulae/Constant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="vars" lowerBound="1"
+          upperBound="-1" eType="#//Formulae/Variable" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
+          eType="#//Formulae/Formula"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Atom" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
           eType="#//Formulae/Term"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BuiltInPredicate" eSuperTypes="#//Formulae/Atom"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ArithmeticPredicate" eSuperTypes="#//Formulae/Atom"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BooleanConstant" eSuperTypes="#//Formulae/Constant"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassName" eSuperTypes="#//Formulae/Constant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="classNameOf" lowerBound="1"
+          eType="#//ClassDef"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Formulae/NonConstant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
+          eType="#//Formulae/Term"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BuiltInFunction" eSuperTypes="#//Formulae/FunctionCall"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SetPredicate" eSuperTypes="#//Formulae/Atom"/>
   </eSubpackages>
 </ecore:EPackage>
