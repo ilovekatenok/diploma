@@ -11,8 +11,9 @@ rule SynthesisModule2AMNAbstractMachine {
 			m.oclIsTypeOf(Synthesis!ModuleDef)
 			) 
 	to
-		am : AMN!AbstractMachine (
+	    am : AMN!AbstractMachine (
 			name <- 'Context' + m.name
+			--sets <- 'Aval'
 		)
 }
 
@@ -24,7 +25,7 @@ rule SynthesisADT2AMNAbstractMachine {
 	to
 		am : AMN!AbstractMachine (
 			name <- adt.name,
-			concretevariables <- adt.attributes
+			concreteVariables <- adt.attributes
 		)
 --	do {
 --		 for (s in adt.attributes ) {
@@ -40,13 +41,13 @@ rule SynthesisADT2AMNAbstractMachine {
 --		)
 --}
 
-rule SynthesisAttributes2AMNElement {
+rule SynthesisAttributes2AMNVariable {
 	from
 		at : Synthesis!AttributeDef(
 			at.oclIsTypeOf(Synthesis!AttributeDef)
 			) 
 	to
-		el : AMN!Element (
+		el : AMN!Variable (
 			name <- at.name
  		)
 }
