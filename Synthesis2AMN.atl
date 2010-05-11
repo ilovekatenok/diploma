@@ -282,7 +282,8 @@ lazy rule attributesToOperations {
 		inpVar : AMN!Variable (
 			name <- 'sav'
 		)
-		subst : AMN!Substitution (
-			name <- 'sav'
+		subst : AMN!Precondition (
+			pre : predicate,
+			then : substitution
 		)
 }
