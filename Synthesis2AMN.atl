@@ -202,6 +202,7 @@ rule SynthesisADT2AMNAbstractMachine {
 		am : AMN!AbstractMachine (
 			name <- adt.name,
 			concreteVariables <- adt.attributes->collect(e | thisModule.attributesToVariables(e)),
+			operations <- adt.attributes->collect(e | thisModule.attributesToOperations(e)),
 			invariant <- predicate 
 		),
 		predicate : AMN!Conjunction (
@@ -256,5 +257,28 @@ lazy rule attributesToInvariants {
 				rightTotalFunction.sign <- 'POW';
 				rightTotalFunction.name <- 'ext_' + at.type;
 				}
+		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
 	}
+}
+
+lazy rule attributesToOperations {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		operation : AMN!Operation (
+			name <- 'set' + at.name,
+			inputParams <- inpVar,
+			substitution <- subst
+		),
+		inpVar : AMN!Variable (
+			name <- 'sav'
+		)
+		subst : AMN!Substitution (
+			name <- 'sav'
+		)
 }
