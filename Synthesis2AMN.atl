@@ -201,11 +201,21 @@ rule SynthesisADT2AMNAbstractMachine {
 	to
 		am : AMN!AbstractMachine (
 			name <- adt.name,
-			concreteVariables <- adt.attributes
+			concreteVariables <- adt.attributes->collect(e | thisModule.attributesToVariables(e)),
+			operations <- adt.attributes->collect(e | thisModule.attributesToOperations(e)),
+			initialization <- initSubt,
+			invariant <- predicate 
+		),
+		predicate : AMN!Conjunction (
+			sign <- '&',
+			predicate <- adt.attributes->collect(e | thisModule.attributesToInvariants(e))
+		),
+		initSubt : AMN!Simultaneous (
+			substitution <- adt.attributes->collect(e | thisModule.attributesToSubstitution(e))
 		)
 }
 
-rule SynthesisAttributes2AMNVariable {
+lazy rule attributesToVariables {
 	from
 		at : Synthesis!AttributeDef(
 			at.oclIsTypeOf(Synthesis!AttributeDef)
@@ -214,4 +224,179 @@ rule SynthesisAttributes2AMNVariable {
 		el : AMN!Variable (
 			name <- at.name
  		)
+}
+
+lazy rule attributesToInvariants {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		attrPred : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftExp,
+			expression <- rightExp
+		),
+		leftExp : AMN!Expression (
+			name <- at.name
+		),
+		rightExp : AMN!BinaryOperator (
+			sign <- 'TotalFunction',
+			expression <- leftTotalFunction,
+			expression <- rightTotalFunction			
+		),
+		leftTotalFunction : AMN!Expression (
+			name <- 'ext_' + at.attributeOf.name			
+		),
+		rightTotalFunction : AMN!Expression (			
+		)
+	do {
+		if (at.type.oclIsTypeOf(Synthesis!StringDef)) {
+			rightTotalFunction.name <- 'String';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
+		 	rightTotalFunction.name <- 'NAT';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
+		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
+	}
+}
+
+lazy rule attributesToOperations {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		operation : AMN!Operation (
+			name <- 'set' + at.name,
+			inputParams <- inpVar,
+			substitution <- subst
+		),
+		inpVar : AMN!Variable (
+			name <- 'sav'
+		),
+		subst : AMN!Precondition (
+			pre <- predicate,
+			thenPart <- substitution
+		),
+		predicate : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftExp,
+			expression <- rightExp
+		),
+		leftExp : AMN!Expression (
+			name <- 'sav'
+		),
+		rightExp : AMN!BinaryOperator (
+			sign <- 'PartialFunction',
+			expression <- leftTotalFunction,
+			expression <- rightTotalFunction			
+		),
+		leftTotalFunction : AMN!Expression (
+			name <- 'ext_' + at.attributeOf.name			
+		),
+		rightTotalFunction : AMN!Expression (			
+		),
+		substitution : AMN!BecomesEqual (
+			leftExpression <- leftExpBecomes,
+			rightExpression <- rightExpBecomes
+		),
+		leftExpBecomes : AMN!Expression (
+			name <- at.name			
+		),
+		rightExpBecomes : AMN!BinaryOperator (
+			sign <- 'Overwrite',
+			expression <- leftOverwrite,
+			expression <- rightOverwrite
+		),
+		leftOverwrite : AMN!Expression (
+			name <- at.name			
+		),
+		rightOverwrite : AMN!Expression (
+			name <- 'sav'			
+		)
+	do {
+		if (at.type.oclIsTypeOf(Synthesis!StringDef)) {
+			rightTotalFunction.name <- 'String';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
+		 	rightTotalFunction.name <- 'NAT';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
+		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
+	}		
+}
+
+lazy rule attributesToSubstitution {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		substitution : AMN!Any (
+			any <- setVarName,
+			where <- pred,
+			thenPart <- subst
+		),
+		setVarName : AMN!Variable (
+			name <- 'a' + at.name
+		),
+		pred : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftExp,
+			expression <- rightExp
+		),
+		leftExp : AMN!Expression (
+			name <- 'a' + at.name
+		),
+		rightExp : AMN!BinaryOperator (
+			sign <- 'TotalFunction',
+			expression <- leftTotalFunction,
+			expression <- rightTotalFunction			
+		),
+		leftTotalFunction : AMN!Expression (
+			name <- 'ext_' + at.attributeOf.name			
+		),
+		rightTotalFunction : AMN!Expression (			
+		),
+		subst : AMN!BinaryOperator (
+			sign <- 'Overwrite',
+			expression <- leftOverwrite,
+			expression <- rightOverwrite
+		),
+		leftOverwrite : AMN!Expression (
+			name <- at.name			
+		),
+		rightOverwrite : AMN!Expression (
+			name <- 'a' + at.name			
+		)
+	do {
+		if (at.type.oclIsTypeOf(Synthesis!StringDef)) {
+			rightTotalFunction.name <- 'String';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
+		 	rightTotalFunction.name <- 'NAT';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+		}
+		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+		}
+	}		
 }
