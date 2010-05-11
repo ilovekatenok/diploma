@@ -211,7 +211,11 @@ rule SynthesisADT2AMNAbstractMachine {
 		)
 }
 
+<<<<<<< HEAD
 lazy rule attributesToVariables {
+=======
+rule SynthesisAttributes2AMNVariable {
+>>>>>>> a9921cddcce1196d3c80f4c81207601e03441fa0
 	from
 		at : Synthesis!AttributeDef(
 			at.oclIsTypeOf(Synthesis!AttributeDef)
