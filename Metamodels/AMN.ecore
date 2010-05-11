@@ -130,7 +130,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Precondition" eSuperTypes="#//AMNSubstitution/Substitution">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pre" lowerBound="1" eType="#//AMNPredicate/Predicate"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="then" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="thenPart" lowerBound="1"
           eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Assertion" eSuperTypes="#//AMNSubstitution/Substitution">
@@ -177,11 +177,11 @@
           eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Any" eSuperTypes="#//AMNSubstitution/Substitution">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
-          upperBound="-1" eType="#//Variable"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="any" lowerBound="1" upperBound="-1"
+          eType="#//Variable"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="where" lowerBound="1"
           eType="#//AMNPredicate/Predicate"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="substitution" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="thenPart" lowerBound="1"
           eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Let" eSuperTypes="#//AMNSubstitution/Substitution">
@@ -230,8 +230,8 @@
           eType="#//AMNExpression/Expression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Simultaneous" eSuperTypes="#//AMNSubstitution/Substitution">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="2"
-          upperBound="2" eType="#//AMNExpression/Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="substitution" lowerBound="2"
+          upperBound="2" eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="PrimitiveTypes">
