@@ -2,6 +2,12 @@ module Synthesis2AMN;
 create OUT:AMN from IN:Synthesis;
 
 -- =============================================================================
+-- HELPERS
+-- =============================================================================
+	
+helper def: counter : Integer = 0;
+	
+-- =============================================================================
 -- RULES
 -- =============================================================================
 	
@@ -12,36 +18,199 @@ rule SynthesisModule2AMNAbstractMachine {
 			) 
 	to
 	    am : AMN!AbstractMachine (
-			name <- 'Context' + m.name
-			--sets <- 'Aval'
+			name <- 'Context' + m.name,
+			sets <- avalSet, 
+			sets <- oidSet,
+			concreteConstants <- objConst,
+			concreteConstants <- selfConst,
+			concreteConstants <- m.containedTypes->collect(e | thisModule.setConstantsExtpFromADT(e)),
+			concreteConstants <- m.containedTypes->collect(e | thisModule.setConstantsExtFromADT(e)),
+			properties <- conjunction
+		),
+		
+		avalSet : AMN!Deferred (
+			name <- 'Aval'
+		),
+		oidSet : AMN!Deferred (
+			name <- 'OID'
+		),
+		
+		objConst : AMN!Constant (
+			value <- 'Obj'
+		),
+		selfConst : AMN!Constant (
+			value <- 'self'
+		),		
+		
+		conjunction : AMN!Conjunction (
+			sign <- '&',
+			predicate <- objProp,
+			predicate <- selfProp,
+			predicate <- equalsPredicate,
+			predicate <- m.containedTypes->collect(e | thisModule.typeConstantsForEachADT(e)),
+			predicate <- m.containedTypes->collect(e | thisModule.typeSubtypeRelationsForEachADT(e))
+		),					
+		objProp : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftObj,
+			expression <- rightAval
+		),
+		leftObj : AMN!Expression (
+			name <- 'Obj'
+		),
+		rightAval : AMN!FunctionalExpression (
+			sign <- 'POW',
+			name <- 'AVAL'
+		),
+		selfProp : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftSelf,
+			expression <- rightObjOID
+		),
+		leftSelf : AMN!Expression (
+			name <- 'self'
+		),
+		rightObjOID : AMN!BinaryOperator (
+			sign <- 'TotalBijection',
+			expression <- leftTotalBijection,
+			expression <- rightTotalBijection			
+		),
+		leftTotalBijection : AMN!Expression (
+			name <- 'Obj'			
+		),
+		rightTotalBijection : AMN!Expression (
+			name <- 'OID'			
+		),
+		equalsPredicate: AMN!AtomicPredicate (
+			sign <- 'Equals',
+			expression <- intersection,
+			expression <- emptySet
+		),
+		intersection : AMN!BinaryOperator (
+			sign <- 'Intesection',
+			expression <- m.containedTypes->collect(e | thisModule.typeToExpForEachADT(e))			
+		),
+		emptySet : AMN!Expression (
+			name <- 'emtySet'			
 		)
 }
+
+lazy rule setConstantsExtpFromADT {
+	from
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
+	to
+		e1 : AMN!Constant (
+			value <- 'extp_' + adt.name
+		)
+}
+
+lazy rule setConstantsExtFromADT {
+	from
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
+	to
+		e2 : AMN!Constant (
+			value <- 'ext_' + adt.name
+		)
+ }
+
+lazy rule typeToExpForEachADT {
+	from
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
+	to
+		e1 : AMN!Expression (
+			name <- 'extp_' + adt.name
+		)
+}
+
+lazy rule typeConstantsForEachADT {
+	from
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
+	to
+		conjunction : AMN!Conjunction (
+			sign <- '&',
+			predicate <- leftPred,
+			predicate <- middlePred,
+			predicate <- rightPred
+		),
+		leftPred : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftLeft,
+			expression <- rightLeft
+		),
+		leftLeft : AMN!Expression (
+			name <- 'ext_' + adt.name
+		),
+		rightLeft : AMN!FunctionalExpression (
+			sign <- 'POW',
+			name <- 'Obj'
+		),
+		middlePred : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftMiddle,
+			expression <- rightMiddle
+		),
+		leftMiddle : AMN!Expression (
+			name <- 'extp_' + adt.name
+		),
+		rightMiddle : AMN!FunctionalExpression (
+			sign <- 'POW',
+			name <- 'Obj'
+		),
+		rightPred : AMN!AtomicPredicate (
+			sign <- 'Inclusion',
+			expression <- leftRight,
+			expression <- rightRight
+		),
+		leftRight : AMN!Expression (
+			name <- 'extp_' + adt.name
+		),
+		rightRight : AMN!Expression (
+			name <- 'ext_' + adt.name
+		)
+ }
+
+lazy rule typeSubtypeRelationsForEachADT {
+	from
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef) and adt.subtypes->NotEmpty())
+		
+	to
+		conjunction : AMN!Conjunction (
+			sign <- '&',
+			predicate <- strictInclusion
+		),
+		strictInclusion : AMN!AtomicPredicate (
+			sign <- 'Inclusion',
+			expression <- leftExp,
+			expression <- rightExp
+		),
+		leftExp : AMN!Expression (			
+		),
+		rightExp : AMN!Expression (
+			name <- 'ext_' + adt.name
+		)
+	do {
+		for (e in adt.subtypes) {
+			leftExp.name <- 'ext_' + e.name;
+		}
+	}
+ }
 
 rule SynthesisADT2AMNAbstractMachine {
 	from
-		adt : Synthesis!ADTDef(
-			adt.oclIsTypeOf(Synthesis!ADTDef)
-			) 
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef))  
 	to
 		am : AMN!AbstractMachine (
 			name <- adt.name,
-			concreteVariables <- adt.attributes
+			concreteVariables <- adt.attributes->collect(e | thisModule.attributesToVariables(e)),
+			invariant <- predicate 
+		),
+		predicate : AMN!Conjunction (
+			sign <- '&',
+			predicate <- adt.attributes->collect(e | thisModule.attributesToInvariants(e))
 		)
---	do {
---		 for (s in adt.attributes ) {
---	 		thisModule.giveName(s);
---		 }
---	}		
 }
 
---rule giveName( s : Synthesis!AttributeDef ) {
---	to
---		e : AMN!Element (
---			name <- s.name
---		)
---}
-
-rule SynthesisAttributes2AMNVariable {
+lazy rule attributesToVariables {
 	from
 		at : Synthesis!AttributeDef(
 			at.oclIsTypeOf(Synthesis!AttributeDef)
@@ -50,4 +219,42 @@ rule SynthesisAttributes2AMNVariable {
 		el : AMN!Variable (
 			name <- at.name
  		)
+}
+
+lazy rule attributesToInvariants {
+	from
+		at : Synthesis!AttributeDef(
+			at.oclIsTypeOf(Synthesis!AttributeDef)
+			) 
+	to
+		attrPred : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftExp,
+			expression <- rightExp
+		),
+		leftExp : AMN!Expression (
+			name <- at.name
+		),
+		rightExp : AMN!BinaryOperator (
+			sign <- 'TotalFunction',
+			expression <- leftTotalFunction,
+			expression <- rightTotalFunction			
+		),
+		leftTotalFunction : AMN!Expression (
+			name <- 'ext_' + at.attributeOf.name			
+		),
+		rightTotalFunction : AMN!Expression (			
+		)
+	do {
+		if (at.type.oclIsTypeOf(Synthesis!StringDef)) {
+			rightTotalFunction.name <- 'String';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
+		 	rightTotalFunction.name <- 'NAT';
+		}
+		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+				rightTotalFunction.sign <- 'POW';
+				rightTotalFunction.name <- 'ext_' + at.type;
+				}
+	}
 }
