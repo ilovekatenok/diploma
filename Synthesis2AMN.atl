@@ -171,8 +171,7 @@ lazy rule typeConstantsForEachADT {
 
 lazy rule typeSubtypeRelationsForEachADT {
 	from
-		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef) and adt.subtypes->NotEmpty())
-		
+		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef) and adt.subtypes->notEmpty())		
 	to
 		conjunction : AMN!Conjunction (
 			sign <- '&',
