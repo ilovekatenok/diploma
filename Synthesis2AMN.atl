@@ -59,7 +59,9 @@ rule SynthesisModule2AMNAbstractMachine {
 		),
 		rightAval : AMN!FunctionalExpression (
 			sign <- 'POW',
-			expNameConst <- nameConst
+			expression <- nameConstAval			
+		),
+		nameConstAval : AMN!NamedConstant (
 			name <- 'AVAL'
 		),
 		selfProp : AMN!AtomicPredicate (
@@ -67,7 +69,7 @@ rule SynthesisModule2AMNAbstractMachine {
 			expression <- leftSelf,
 			expression <- rightObjOID
 		),
-		leftSelf : AMN!Expression (
+		leftSelf : AMN!NamedConstant (
 			name <- 'self'
 		),
 		rightObjOID : AMN!BinaryOperator (
@@ -75,11 +77,11 @@ rule SynthesisModule2AMNAbstractMachine {
 			expression <- leftTotalBijection,
 			expression <- rightTotalBijection			
 		),
-		leftTotalBijection : AMN!Expression (
-			name <- 'Obj'			
+		leftTotalBijection : AMN!NamedConstant (
+			name <- 'Obj'
 		),
-		rightTotalBijection : AMN!Expression (
-			name <- 'OID'			
+		rightTotalBijection : AMN!NamedConstant (
+			name <- 'OID'
 		),
 		equalsPredicate: AMN!AtomicPredicate (
 			sign <- 'Equals',
@@ -88,10 +90,13 @@ rule SynthesisModule2AMNAbstractMachine {
 		),
 		intersection : AMN!BinaryOperator (
 			sign <- 'Intesection',
-			expression <- m.containedTypes->collect(e | thisModule.typeToExpForEachADT(e))			
+			expression <- m.containedTypes->collect(e | thisModule.setConstantsExtpFromADT(e))			
 		),
-		emptySet : AMN!Expression (
-			name <- 'emtySet'			
+		emptySet : AMN!SetValue (
+			expression <- emtySet			
+		),
+		emtySet : AMN!NamedConstant (
+			name <- 'emty'
 		)
 }
 
@@ -99,8 +104,8 @@ lazy rule setConstantsExtpFromADT {
 	from
 		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
 	to
-		e1 : AMN!Constant (
-			value <- 'extp_' + adt.name
+		e1 : AMN!NamedConstant (
+			name <- 'extp_' + adt.name
 		)
 }
 
@@ -108,19 +113,10 @@ lazy rule setConstantsExtFromADT {
 	from
 		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
 	to
-		e2 : AMN!Constant (
-			value <- 'ext_' + adt.name
+		e2 : AMN!NamedConstant (
+			name <- 'ext_' + adt.name
 		)
  }
-
-lazy rule typeToExpForEachADT {
-	from
-		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef)) 
-	to
-		e1 : AMN!Expression (
-			name <- 'extp_' + adt.name
-		)
-}
 
 lazy rule typeConstantsForEachADT {
 	from
@@ -137,23 +133,29 @@ lazy rule typeConstantsForEachADT {
 			expression <- leftLeft,
 			expression <- rightLeft
 		),
-		leftLeft : AMN!Expression (
+		leftLeft : AMN!NamedConstant (
 			name <- 'ext_' + adt.name
 		),
 		rightLeft : AMN!FunctionalExpression (
 			sign <- 'POW',
-			name <- 'Obj'
+			expression <- objExpLeft
 		),
+		objExpLeft : AMN!NamedConstant (
+			name <- 'Obj'
+		),		
 		middlePred : AMN!AtomicPredicate (
 			sign <- 'Belongs',
 			expression <- leftMiddle,
 			expression <- rightMiddle
 		),
-		leftMiddle : AMN!Expression (
+		leftMiddle : AMN!NamedConstant (
 			name <- 'extp_' + adt.name
 		),
 		rightMiddle : AMN!FunctionalExpression (
 			sign <- 'POW',
+			expression <- objExpMiddle
+		),
+		objExpMiddle : AMN!NamedConstant (
 			name <- 'Obj'
 		),
 		rightPred : AMN!AtomicPredicate (
@@ -161,10 +163,10 @@ lazy rule typeConstantsForEachADT {
 			expression <- leftRight,
 			expression <- rightRight
 		),
-		leftRight : AMN!Expression (
+		leftRight : AMN!NamedConstant (
 			name <- 'extp_' + adt.name
 		),
-		rightRight : AMN!Expression (
+		rightRight : AMN!NamedConstant (
 			name <- 'ext_' + adt.name
 		)
  }
@@ -182,9 +184,9 @@ lazy rule typeSubtypeRelationsForEachADT {
 			expression <- leftExp,
 			expression <- rightExp
 		),
-		leftExp : AMN!Expression (			
+		leftExp : AMN!NamedConstant (			
 		),
-		rightExp : AMN!Expression (
+		rightExp : AMN!NamedConstant (
 			name <- 'ext_' + adt.name
 		)
 	do {
@@ -201,7 +203,7 @@ rule SynthesisADT2AMNAbstractMachine {
 		am : AMN!AbstractMachine (
 			name <- adt.name,
 			concreteVariables <- adt.attributes->collect(e | thisModule.attributesToVariables(e)),
-			operations <- adt.attributes->collect(e | thisModule.attributesToOperations(e)),
+			--operations <- adt.attributes->collect(e | thisModule.attributesToOperations(e)),
 			initialization <- initSubt,
 			invariant <- predicate 
 		),
@@ -236,7 +238,7 @@ lazy rule attributesToInvariants {
 			expression <- leftExp,
 			expression <- rightExp
 		),
-		leftExp : AMN!Expression (
+		leftExp : AMN!NamedConstant (
 			name <- at.name
 		),
 		rightExp : AMN!BinaryOperator (
@@ -244,10 +246,10 @@ lazy rule attributesToInvariants {
 			expression <- leftTotalFunction,
 			expression <- rightTotalFunction			
 		),
-		leftTotalFunction : AMN!Expression (
+		leftTotalFunction : AMN!NamedConstant (
 			name <- 'ext_' + at.attributeOf.name			
 		),
-		rightTotalFunction : AMN!Expression (			
+		rightTotalFunction : AMN!NamedConstant (			
 		)
 	do {
 		if (at.type.oclIsTypeOf(Synthesis!StringDef)) {
@@ -256,14 +258,14 @@ lazy rule attributesToInvariants {
 		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
 		 	rightTotalFunction.name <- 'NAT';
 		}
-		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-				}
-		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-				}
+--		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
+--		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
 	}
 }
 
@@ -290,7 +292,7 @@ lazy rule attributesToOperations {
 			expression <- leftExp,
 			expression <- rightExp
 		),
-		leftExp : AMN!Expression (
+		leftExp : AMN!NamedConstant (
 			name <- 'sav'
 		),
 		rightExp : AMN!BinaryOperator (
@@ -298,16 +300,16 @@ lazy rule attributesToOperations {
 			expression <- leftTotalFunction,
 			expression <- rightTotalFunction			
 		),
-		leftTotalFunction : AMN!Expression (
+		leftTotalFunction : AMN!NamedConstant (
 			name <- 'ext_' + at.attributeOf.name			
 		),
-		rightTotalFunction : AMN!Expression (			
+		rightTotalFunction : AMN!NamedConstant (			
 		),
 		substitution : AMN!BecomesEqual (
 			leftExpression <- leftExpBecomes,
 			rightExpression <- rightExpBecomes
 		),
-		leftExpBecomes : AMN!Expression (
+		leftExpBecomes : AMN!NamedConstant (
 			name <- at.name			
 		),
 		rightExpBecomes : AMN!BinaryOperator (
@@ -315,10 +317,10 @@ lazy rule attributesToOperations {
 			expression <- leftOverwrite,
 			expression <- rightOverwrite
 		),
-		leftOverwrite : AMN!Expression (
+		leftOverwrite : AMN!NamedConstant (
 			name <- at.name			
 		),
-		rightOverwrite : AMN!Expression (
+		rightOverwrite : AMN!NamedConstant (
 			name <- 'sav'			
 		)
 	do {
@@ -328,14 +330,14 @@ lazy rule attributesToOperations {
 		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
 		 	rightTotalFunction.name <- 'NAT';
 		}
-		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-				}
-		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-				}
+--		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
+--		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
 	}		
 }
 
@@ -358,7 +360,7 @@ lazy rule attributesToSubstitution {
 			expression <- leftExp,
 			expression <- rightExp
 		),
-		leftExp : AMN!Expression (
+		leftExp : AMN!NamedConstant (
 			name <- 'a' + at.name
 		),
 		rightExp : AMN!BinaryOperator (
@@ -366,20 +368,20 @@ lazy rule attributesToSubstitution {
 			expression <- leftTotalFunction,
 			expression <- rightTotalFunction			
 		),
-		leftTotalFunction : AMN!Expression (
+		leftTotalFunction : AMN!NamedConstant (
 			name <- 'ext_' + at.attributeOf.name			
 		),
-		rightTotalFunction : AMN!Expression (			
+		rightTotalFunction : AMN!NamedConstant (			
 		),
 		subst : AMN!BinaryOperator (
 			sign <- 'Overwrite',
 			expression <- leftOverwrite,
 			expression <- rightOverwrite
 		),
-		leftOverwrite : AMN!Expression (
+		leftOverwrite : AMN!NamedConstant (
 			name <- at.name			
 		),
-		rightOverwrite : AMN!Expression (
+		rightOverwrite : AMN!NamedConstant (
 			name <- 'a' + at.name			
 		)
 	do {
@@ -389,13 +391,13 @@ lazy rule attributesToSubstitution {
 		if (at.type.oclIsTypeOf(Synthesis!IntegerDef)) {
 		 	rightTotalFunction.name <- 'NAT';
 		}
-		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-		}
-		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
-				rightTotalFunction.sign <- 'POW';
-				rightTotalFunction.name <- 'ext_' + at.type;
-		}
+--		if (at.type.oclIsTypeOf(Synthesis!SetDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
+--		if (at.type.oclIsTypeOf(Synthesis!EnumDef)) {			  
+--				rightTotalFunction.sign <- 'POW';
+--				rightTotalFunction.name <- 'ext_' + at.type;
+--				}
 	}		
 }

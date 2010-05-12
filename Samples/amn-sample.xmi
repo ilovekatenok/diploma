@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="AMNPredicate" xmlns:_1="AMNExpression" xmlns:_2="AMNSubstitution" xmlns:amn="http://amn/1.0">
+  <amn:AbstractMachine sets="/1 /2" properties="/5" concreteConstants="/3 /4 /46 /47 /48 /49 /50 /51 /52 /53 /54 /55 /56 /57 /58 /59">
+    <name>ContextMuseumOwlOntology</name>
+  </amn:AbstractMachine>
+  <amn:Deferred>
+    <name>Aval</name>
+  </amn:Deferred>
+  <amn:Deferred>
+    <name>OID</name>
+  </amn:Deferred>
+  <amn:NamedConstant name="Obj"/>
+  <amn:NamedConstant name="self"/>
+  <Conjunction sign="&amp;" predicate="/6 /10 /15 /60 /72 /84 /96 /108 /120 /132 /144 /148 /152 /156 /160 /164 /168"/>
+  <AtomicPredicate sign="Belongs" expression="/7 /8"/>
+  <amn:NamedConstant name="Obj"/>
+  <_1:FunctionalExpression sign="POW" expression="/9"/>
+  <amn:NamedConstant name="AVAL"/>
+  <AtomicPredicate sign="Belongs" expression="/11 /12"/>
+  <amn:NamedConstant name="self"/>
+  <_1:BinaryOperator sign="TotalBijection" expression="/13 /14"/>
+  <amn:NamedConstant name="Obj"/>
+  <amn:NamedConstant name="OID"/>
+  <AtomicPredicate sign="Equals" expression="/16 /17"/>
+  <_1:BinaryOperator sign="Intesection" expression="/172 /173 /174 /175 /176 /177 /178"/>
+  <amn:SetValue expression="/18"/>
+  <amn:NamedConstant name="emty"/>
+  <amn:AbstractMachine invariant="/20" initialization="/21" concreteVariables="/179 /180 /181 /182">
+    <name>Artist</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/183 /188 /193 /198"/>
+  <_2:Simultaneous substitution="/203 /213 /223 /233"/>
+  <amn:AbstractMachine invariant="/23" initialization="/24" concreteVariables="/243">
+    <name>Painter</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/244"/>
+  <_2:Simultaneous substitution="/249"/>
+  <amn:AbstractMachine invariant="/26" initialization="/27" concreteVariables="/259 /260">
+    <name>Painting</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/261 /266"/>
+  <_2:Simultaneous substitution="/271 /281"/>
+  <amn:AbstractMachine invariant="/29" initialization="/30" concreteVariables="/291 /292">
+    <name>Sculpture</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/293 /298"/>
+  <_2:Simultaneous substitution="/303 /313"/>
+  <amn:AbstractMachine invariant="/32" initialization="/33" concreteVariables="/323">
+    <name>Sculptor</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/324"/>
+  <_2:Simultaneous substitution="/329"/>
+  <amn:AbstractMachine invariant="/35" initialization="/36" concreteVariables="/339 /340 /341 /342">
+    <name>Artefact</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/343 /348 /353 /358"/>
+  <_2:Simultaneous substitution="/363 /373 /383 /393"/>
+  <amn:AbstractMachine invariant="/38" initialization="/39" concreteVariables="/403 /404 /405">
+    <name>Museum</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/406 /411 /416"/>
+  <_2:Simultaneous substitution="/421 /431 /441"/>
+  <amn:AbstractMachine invariant="/41" initialization="/42" concreteVariables="/451">
+    <name>Genius</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;" predicate="/452"/>
+  <_2:Simultaneous substitution="/457"/>
+  <amn:AbstractMachine invariant="/44" initialization="/45">
+    <name>Composer</name>
+  </amn:AbstractMachine>
+  <Conjunction sign="&amp;"/>
+  <_2:Simultaneous/>
+  <amn:NamedConstant name="extp_Artist"/>
+  <amn:NamedConstant name="extp_Artefact"/>
+  <amn:NamedConstant name="extp_Museum"/>
+  <amn:NamedConstant name="extp_Sculptor"/>
+  <amn:NamedConstant name="extp_Painter"/>
+  <amn:NamedConstant name="extp_Painting"/>
+  <amn:NamedConstant name="extp_Sculpture"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <Conjunction sign="&amp;" predicate="/61 /65 /69"/>
+  <AtomicPredicate sign="Belongs" expression="/62 /63"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <_1:FunctionalExpression sign="POW" expression="/64"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/66 /67"/>
+  <amn:NamedConstant name="extp_Artist"/>
+  <_1:FunctionalExpression sign="POW" expression="/68"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/70 /71"/>
+  <amn:NamedConstant name="extp_Artist"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <Conjunction sign="&amp;" predicate="/73 /77 /81"/>
+  <AtomicPredicate sign="Belongs" expression="/74 /75"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <_1:FunctionalExpression sign="POW" expression="/76"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/78 /79"/>
+  <amn:NamedConstant name="extp_Artefact"/>
+  <_1:FunctionalExpression sign="POW" expression="/80"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/82 /83"/>
+  <amn:NamedConstant name="extp_Artefact"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <Conjunction sign="&amp;" predicate="/85 /89 /93"/>
+  <AtomicPredicate sign="Belongs" expression="/86 /87"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <_1:FunctionalExpression sign="POW" expression="/88"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/90 /91"/>
+  <amn:NamedConstant name="extp_Museum"/>
+  <_1:FunctionalExpression sign="POW" expression="/92"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/94 /95"/>
+  <amn:NamedConstant name="extp_Museum"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <Conjunction sign="&amp;" predicate="/97 /101 /105"/>
+  <AtomicPredicate sign="Belongs" expression="/98 /99"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <_1:FunctionalExpression sign="POW" expression="/100"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/102 /103"/>
+  <amn:NamedConstant name="extp_Sculptor"/>
+  <_1:FunctionalExpression sign="POW" expression="/104"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/106 /107"/>
+  <amn:NamedConstant name="extp_Sculptor"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <Conjunction sign="&amp;" predicate="/109 /113 /117"/>
+  <AtomicPredicate sign="Belongs" expression="/110 /111"/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <_1:FunctionalExpression sign="POW" expression="/112"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/114 /115"/>
+  <amn:NamedConstant name="extp_Painter"/>
+  <_1:FunctionalExpression sign="POW" expression="/116"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/118 /119"/>
+  <amn:NamedConstant name="extp_Painter"/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <Conjunction sign="&amp;" predicate="/121 /125 /129"/>
+  <AtomicPredicate sign="Belongs" expression="/122 /123"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <_1:FunctionalExpression sign="POW" expression="/124"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/126 /127"/>
+  <amn:NamedConstant name="extp_Painting"/>
+  <_1:FunctionalExpression sign="POW" expression="/128"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/130 /131"/>
+  <amn:NamedConstant name="extp_Painting"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <Conjunction sign="&amp;" predicate="/133 /137 /141"/>
+  <AtomicPredicate sign="Belongs" expression="/134 /135"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <_1:FunctionalExpression sign="POW" expression="/136"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Belongs" expression="/138 /139"/>
+  <amn:NamedConstant name="extp_Sculpture"/>
+  <_1:FunctionalExpression sign="POW" expression="/140"/>
+  <amn:NamedConstant name="Obj"/>
+  <AtomicPredicate sign="Inclusion" expression="/142 /143"/>
+  <amn:NamedConstant name="extp_Sculpture"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <Conjunction sign="&amp;" predicate="/145"/>
+  <AtomicPredicate sign="Inclusion" expression="/146 /147"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <Conjunction sign="&amp;" predicate="/149"/>
+  <AtomicPredicate sign="Inclusion" expression="/150 /151"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <Conjunction sign="&amp;" predicate="/153"/>
+  <AtomicPredicate sign="Inclusion" expression="/154 /155"/>
+  <amn:NamedConstant/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <Conjunction sign="&amp;" predicate="/157"/>
+  <AtomicPredicate sign="Inclusion" expression="/158 /159"/>
+  <amn:NamedConstant/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <Conjunction sign="&amp;" predicate="/161"/>
+  <AtomicPredicate sign="Inclusion" expression="/162 /163"/>
+  <amn:NamedConstant/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <Conjunction sign="&amp;" predicate="/165"/>
+  <AtomicPredicate sign="Inclusion" expression="/166 /167"/>
+  <amn:NamedConstant/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <Conjunction sign="&amp;" predicate="/169"/>
+  <AtomicPredicate sign="Inclusion" expression="/170 /171"/>
+  <amn:NamedConstant/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant name="extp_Artist"/>
+  <amn:NamedConstant name="extp_Artefact"/>
+  <amn:NamedConstant name="extp_Museum"/>
+  <amn:NamedConstant name="extp_Sculptor"/>
+  <amn:NamedConstant name="extp_Painter"/>
+  <amn:NamedConstant name="extp_Painting"/>
+  <amn:NamedConstant name="extp_Sculpture"/>
+  <amn:Variable name="Artist.firstName"/>
+  <amn:Variable name="Artist.lastName"/>
+  <amn:Variable name="Artist.creates"/>
+  <amn:Variable name="artistInvariant"/>
+  <AtomicPredicate sign="Belongs" expression="/184 /185"/>
+  <amn:NamedConstant name="Artist.firstName"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/186 /187"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/189 /190"/>
+  <amn:NamedConstant name="Artist.lastName"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/191 /192"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/194 /195"/>
+  <amn:NamedConstant name="Artist.creates"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/196 /197"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant/>
+  <AtomicPredicate sign="Belongs" expression="/199 /200"/>
+  <amn:NamedConstant name="artistInvariant"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/201 /202"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/204" where="/205" thenPart="/210"/>
+  <amn:Variable name="aArtist.firstName"/>
+  <AtomicPredicate sign="Belongs" expression="/206 /207"/>
+  <amn:NamedConstant name="aArtist.firstName"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/208 /209"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/211 /212"/>
+  <amn:NamedConstant name="Artist.firstName"/>
+  <amn:NamedConstant name="aArtist.firstName"/>
+  <_2:Any any="/214" where="/215" thenPart="/220"/>
+  <amn:Variable name="aArtist.lastName"/>
+  <AtomicPredicate sign="Belongs" expression="/216 /217"/>
+  <amn:NamedConstant name="aArtist.lastName"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/218 /219"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/221 /222"/>
+  <amn:NamedConstant name="Artist.lastName"/>
+  <amn:NamedConstant name="aArtist.lastName"/>
+  <_2:Any any="/224" where="/225" thenPart="/230"/>
+  <amn:Variable name="aArtist.creates"/>
+  <AtomicPredicate sign="Belongs" expression="/226 /227"/>
+  <amn:NamedConstant name="aArtist.creates"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/228 /229"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/231 /232"/>
+  <amn:NamedConstant name="Artist.creates"/>
+  <amn:NamedConstant name="aArtist.creates"/>
+  <_2:Any any="/234" where="/235" thenPart="/240"/>
+  <amn:Variable name="aartistInvariant"/>
+  <AtomicPredicate sign="Belongs" expression="/236 /237"/>
+  <amn:NamedConstant name="aartistInvariant"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/238 /239"/>
+  <amn:NamedConstant name="ext_Artist"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/241 /242"/>
+  <amn:NamedConstant name="artistInvariant"/>
+  <amn:NamedConstant name="aartistInvariant"/>
+  <amn:Variable name="Painter.paints"/>
+  <AtomicPredicate sign="Belongs" expression="/245 /246"/>
+  <amn:NamedConstant name="Painter.paints"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/247 /248"/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/250" where="/251" thenPart="/256"/>
+  <amn:Variable name="aPainter.paints"/>
+  <AtomicPredicate sign="Belongs" expression="/252 /253"/>
+  <amn:NamedConstant name="aPainter.paints"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/254 /255"/>
+  <amn:NamedConstant name="ext_Painter"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/257 /258"/>
+  <amn:NamedConstant name="Painter.paints"/>
+  <amn:NamedConstant name="aPainter.paints"/>
+  <amn:Variable name="Painting.technique"/>
+  <amn:Variable name="Painting.hasPainter"/>
+  <AtomicPredicate sign="Belongs" expression="/262 /263"/>
+  <amn:NamedConstant name="Painting.technique"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/264 /265"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/267 /268"/>
+  <amn:NamedConstant name="Painting.hasPainter"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/269 /270"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/272" where="/273" thenPart="/278"/>
+  <amn:Variable name="aPainting.technique"/>
+  <AtomicPredicate sign="Belongs" expression="/274 /275"/>
+  <amn:NamedConstant name="aPainting.technique"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/276 /277"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/279 /280"/>
+  <amn:NamedConstant name="Painting.technique"/>
+  <amn:NamedConstant name="aPainting.technique"/>
+  <_2:Any any="/282" where="/283" thenPart="/288"/>
+  <amn:Variable name="aPainting.hasPainter"/>
+  <AtomicPredicate sign="Belongs" expression="/284 /285"/>
+  <amn:NamedConstant name="aPainting.hasPainter"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/286 /287"/>
+  <amn:NamedConstant name="ext_Painting"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/289 /290"/>
+  <amn:NamedConstant name="Painting.hasPainter"/>
+  <amn:NamedConstant name="aPainting.hasPainter"/>
+  <amn:Variable name="Sculpture.material"/>
+  <amn:Variable name="Sculpture.hasSculptor"/>
+  <AtomicPredicate sign="Belongs" expression="/294 /295"/>
+  <amn:NamedConstant name="Sculpture.material"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/296 /297"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/299 /300"/>
+  <amn:NamedConstant name="Sculpture.hasSculptor"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/301 /302"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/304" where="/305" thenPart="/310"/>
+  <amn:Variable name="aSculpture.material"/>
+  <AtomicPredicate sign="Belongs" expression="/306 /307"/>
+  <amn:NamedConstant name="aSculpture.material"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/308 /309"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/311 /312"/>
+  <amn:NamedConstant name="Sculpture.material"/>
+  <amn:NamedConstant name="aSculpture.material"/>
+  <_2:Any any="/314" where="/315" thenPart="/320"/>
+  <amn:Variable name="aSculpture.hasSculptor"/>
+  <AtomicPredicate sign="Belongs" expression="/316 /317"/>
+  <amn:NamedConstant name="aSculpture.hasSculptor"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/318 /319"/>
+  <amn:NamedConstant name="ext_Sculpture"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/321 /322"/>
+  <amn:NamedConstant name="Sculpture.hasSculptor"/>
+  <amn:NamedConstant name="aSculpture.hasSculptor"/>
+  <amn:Variable name="Sculptor.sculpts"/>
+  <AtomicPredicate sign="Belongs" expression="/325 /326"/>
+  <amn:NamedConstant name="Sculptor.sculpts"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/327 /328"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/330" where="/331" thenPart="/336"/>
+  <amn:Variable name="aSculptor.sculpts"/>
+  <AtomicPredicate sign="Belongs" expression="/332 /333"/>
+  <amn:NamedConstant name="aSculptor.sculpts"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/334 /335"/>
+  <amn:NamedConstant name="ext_Sculptor"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/337 /338"/>
+  <amn:NamedConstant name="Sculptor.sculpts"/>
+  <amn:NamedConstant name="aSculptor.sculpts"/>
+  <amn:Variable name="Artefact.year"/>
+  <amn:Variable name="Artefact.title"/>
+  <amn:Variable name="Artefact.hasArtist"/>
+  <amn:Variable name="Artefact.exhibited"/>
+  <AtomicPredicate sign="Belongs" expression="/344 /345"/>
+  <amn:NamedConstant name="Artefact.year"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/346 /347"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/349 /350"/>
+  <amn:NamedConstant name="Artefact.title"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/351 /352"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/354 /355"/>
+  <amn:NamedConstant name="Artefact.hasArtist"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/356 /357"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant/>
+  <AtomicPredicate sign="Belongs" expression="/359 /360"/>
+  <amn:NamedConstant name="Artefact.exhibited"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/361 /362"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/364" where="/365" thenPart="/370"/>
+  <amn:Variable name="aArtefact.year"/>
+  <AtomicPredicate sign="Belongs" expression="/366 /367"/>
+  <amn:NamedConstant name="aArtefact.year"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/368 /369"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/371 /372"/>
+  <amn:NamedConstant name="Artefact.year"/>
+  <amn:NamedConstant name="aArtefact.year"/>
+  <_2:Any any="/374" where="/375" thenPart="/380"/>
+  <amn:Variable name="aArtefact.title"/>
+  <AtomicPredicate sign="Belongs" expression="/376 /377"/>
+  <amn:NamedConstant name="aArtefact.title"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/378 /379"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/381 /382"/>
+  <amn:NamedConstant name="Artefact.title"/>
+  <amn:NamedConstant name="aArtefact.title"/>
+  <_2:Any any="/384" where="/385" thenPart="/390"/>
+  <amn:Variable name="aArtefact.hasArtist"/>
+  <AtomicPredicate sign="Belongs" expression="/386 /387"/>
+  <amn:NamedConstant name="aArtefact.hasArtist"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/388 /389"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/391 /392"/>
+  <amn:NamedConstant name="Artefact.hasArtist"/>
+  <amn:NamedConstant name="aArtefact.hasArtist"/>
+  <_2:Any any="/394" where="/395" thenPart="/400"/>
+  <amn:Variable name="aArtefact.exhibited"/>
+  <AtomicPredicate sign="Belongs" expression="/396 /397"/>
+  <amn:NamedConstant name="aArtefact.exhibited"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/398 /399"/>
+  <amn:NamedConstant name="ext_Artefact"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/401 /402"/>
+  <amn:NamedConstant name="Artefact.exhibited"/>
+  <amn:NamedConstant name="aArtefact.exhibited"/>
+  <amn:Variable name="Museum.city"/>
+  <amn:Variable name="Museum.name"/>
+  <amn:Variable name="Museum.exhibites"/>
+  <AtomicPredicate sign="Belongs" expression="/407 /408"/>
+  <amn:NamedConstant name="Museum.city"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/409 /410"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/412 /413"/>
+  <amn:NamedConstant name="Museum.name"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/414 /415"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant name="String"/>
+  <AtomicPredicate sign="Belongs" expression="/417 /418"/>
+  <amn:NamedConstant name="Museum.exhibites"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/419 /420"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/422" where="/423" thenPart="/428"/>
+  <amn:Variable name="aMuseum.city"/>
+  <AtomicPredicate sign="Belongs" expression="/424 /425"/>
+  <amn:NamedConstant name="aMuseum.city"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/426 /427"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/429 /430"/>
+  <amn:NamedConstant name="Museum.city"/>
+  <amn:NamedConstant name="aMuseum.city"/>
+  <_2:Any any="/432" where="/433" thenPart="/438"/>
+  <amn:Variable name="aMuseum.name"/>
+  <AtomicPredicate sign="Belongs" expression="/434 /435"/>
+  <amn:NamedConstant name="aMuseum.name"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/436 /437"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant name="String"/>
+  <_1:BinaryOperator sign="Overwrite" expression="/439 /440"/>
+  <amn:NamedConstant name="Museum.name"/>
+  <amn:NamedConstant name="aMuseum.name"/>
+  <_2:Any any="/442" where="/443" thenPart="/448"/>
+  <amn:Variable name="aMuseum.exhibites"/>
+  <AtomicPredicate sign="Belongs" expression="/444 /445"/>
+  <amn:NamedConstant name="aMuseum.exhibites"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/446 /447"/>
+  <amn:NamedConstant name="ext_Museum"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/449 /450"/>
+  <amn:NamedConstant name="Museum.exhibites"/>
+  <amn:NamedConstant name="aMuseum.exhibites"/>
+  <amn:Variable name="geniusInvariant"/>
+  <AtomicPredicate sign="Belongs" expression="/453 /454"/>
+  <amn:NamedConstant name="geniusInvariant"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/455 /456"/>
+  <amn:NamedConstant name="ext_Genius"/>
+  <amn:NamedConstant/>
+  <_2:Any any="/458" where="/459" thenPart="/464"/>
+  <amn:Variable name="ageniusInvariant"/>
+  <AtomicPredicate sign="Belongs" expression="/460 /461"/>
+  <amn:NamedConstant name="ageniusInvariant"/>
+  <_1:BinaryOperator sign="TotalFunction" expression="/462 /463"/>
+  <amn:NamedConstant name="ext_Genius"/>
+  <amn:NamedConstant/>
+  <_1:BinaryOperator sign="Overwrite" expression="/465 /466"/>
+  <amn:NamedConstant name="geniusInvariant"/>
+  <amn:NamedConstant name="ageniusInvariant"/>
+</xmi:XMI>

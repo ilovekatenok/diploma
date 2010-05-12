@@ -81,7 +81,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//PrimitiveTypes/String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SetValue" eSuperTypes="#//AMNExpression/Expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" upperBound="-1"
         eType="#//PrimitiveTypes/String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//AMNExpression/Expression"/>
