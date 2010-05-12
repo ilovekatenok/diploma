@@ -5,8 +5,6 @@ create OUT:AMN from IN:Synthesis;
 -- HELPERS
 -- =============================================================================
 	
-helper def: counter : Integer = 0;
-	
 -- =============================================================================
 -- RULES
 -- =============================================================================
@@ -35,11 +33,11 @@ rule SynthesisModule2AMNAbstractMachine {
 			name <- 'OID'
 		),
 		
-		objConst : AMN!Constant (
-			value <- 'Obj'
+		objConst : AMN!NamedConstant (
+			name <- 'Obj'
 		),
-		selfConst : AMN!Constant (
-			value <- 'self'
+		selfConst : AMN!NamedConstant (
+			name <- 'self'
 		),		
 		
 		conjunction : AMN!Conjunction (
@@ -55,11 +53,12 @@ rule SynthesisModule2AMNAbstractMachine {
 			expression <- leftObj,
 			expression <- rightAval
 		),
-		leftObj : AMN!Expression (
+		leftObj : AMN!NamedConstant (
 			name <- 'Obj'
 		),
 		rightAval : AMN!FunctionalExpression (
 			sign <- 'POW',
+			expNameConst <- nameConst
 			name <- 'AVAL'
 		),
 		selfProp : AMN!AtomicPredicate (
