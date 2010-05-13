@@ -8,7 +8,7 @@
   <syn:MetaclassDef name="inverseFunctionalProperty" instances="/56 /59 /62 /68"/>
   <syn:MetaclassDef name="transitiveProperty"/>
   <syn:MetaclassDef name="symmetricProperty"/>
-  <syn:ModuleDef name="MuseumOwlOntology" classes="/2" containedClasses="/10 /20 /22 /18 /12 /14 /16 /47 /50 /53 /56 /59 /62 /65 /68" containedTypes="/9 /19 /21 /17 /11 /13 /15" schema="/0"/>
+  <syn:ModuleDef name="MuseumOwlOntology" classes="/2" containedClasses="/10 /20 /22 /18 /12 /14 /16 /47 /50 /53 /56 /59 /62 /65 /68" containedTypes="/9 /19 /21 /17 /11 /13 /15 /102 /79" schema="/0"/>
   <syn:ADTDef name="Artist" classes="/1" typeInModule="/8" values="/89" attributes="/31 /37 /57 /85" subtypes="/11 /17"/>
   <syn:ClassDef name="artist" classes="/1" instanceType="/9" classInModule="/8" subclasses="/12 /18"/>
   <syn:ADTDef name="Painter" classes="/1" typeInModule="/8" attributes="/66" supertypes="/9"/>
@@ -79,7 +79,7 @@
   <syn:IntegerValueDef value="0"/>
   <syn:FrameDef name="MyMuseum" classes="/22"/>
   <syn:ClassDef name="genius" instanceType="/79"/>
-  <syn:ADTDef name="Genius" attributes="/80"/>
+  <syn:ADTDef name="Genius" typeInModule="/8" attributes="/80"/>
   <syn:AttributeDef name="geniusInvariant" attributeOf="/79" type="/81"/>
   <syn:InvariantDef name="geniusInvariantBody" predicativeSpec="/82"/>
   <syn-form:SetPredicate terms="/78 /83" symbol="&lt;="/>
@@ -102,6 +102,6 @@
   <syn-form:ArithmeticPredicate stringRepr="cardinal(Y.creates)&lt;=10" terms="/98 /100" symbol="&lt;="/>
   <syn:IntegerValueDef value="10"/>
   <syn-form:GetFunction name="Y.creates" attribute="/57"/>
-  <syn:ADTDef name="Composer"/>
+  <syn:ADTDef name="Composer" typeInModule="/8"/>
   <syn:ClassDef name="composer" instanceType="/102"/>
 </xmi:XMI>

@@ -46,7 +46,7 @@ rule SynthesisModule2AMNAbstractMachine {
 			predicate <- selfProp,
 			predicate <- equalsPredicate,
 			predicate <- m.containedTypes->collect(e | thisModule.typeConstantsForEachADT(e)),
-			predicate <- m.containedTypes->collect(e | thisModule.typeSubtypeRelationsForEachADT(e))
+			predicate <- m.containedTypes->select(e | e.oclIsTypeOf(Synthesis!ATDDef))->collect(e | thisModule.typeSubtypeRelationsForEachADT(e))
 		),					
 		objProp : AMN!AtomicPredicate (
 			sign <- 'Belongs',
@@ -90,13 +90,10 @@ rule SynthesisModule2AMNAbstractMachine {
 		),
 		intersection : AMN!BinaryOperator (
 			sign <- 'Intesection',
-			expression <- m.containedTypes->collect(e | thisModule.setConstantsExtpFromADT(e))			
+			expression <- m.containedTypes->collect(e | thisModule.setConstantsExtpFromADT(e))	
 		),
 		emptySet : AMN!SetValue (
-			expression <- emtySet			
-		),
-		emtySet : AMN!NamedConstant (
-			name <- 'emty'
+			value <- 'emptySet'			
 		)
 }
 
@@ -173,7 +170,7 @@ lazy rule typeConstantsForEachADT {
 
 lazy rule typeSubtypeRelationsForEachADT {
 	from
-		adt : Synthesis!ADTDef(adt.oclIsTypeOf(Synthesis!ADTDef) and adt.subtypes->notEmpty())		
+		adt : Synthesis!ADTDef		
 	to
 		conjunction : AMN!Conjunction (
 			sign <- '&',
@@ -191,8 +188,8 @@ lazy rule typeSubtypeRelationsForEachADT {
 		)
 	do {
 		for (e in adt.subtypes) {
-			leftExp.name <- 'ext_' + e.name;
-		}
+				leftExp.name <- 'ext_' + e.name;
+			}
 	}
  }
 
@@ -205,7 +202,9 @@ rule SynthesisADT2AMNAbstractMachine {
 			concreteVariables <- adt.attributes->collect(e | thisModule.attributesToVariables(e)),
 			--operations <- adt.attributes->collect(e | thisModule.attributesToOperations(e)),
 			initialization <- initSubt,
-			invariant <- predicate 
+			invariant <- predicate--,
+			--extendsClause <- adt.supertypes,
+			--sees <- contextMachine
 		),
 		predicate : AMN!Conjunction (
 			sign <- '&',
@@ -213,7 +212,10 @@ rule SynthesisADT2AMNAbstractMachine {
 		),
 		initSubt : AMN!Simultaneous (
 			substitution <- adt.attributes->collect(e | thisModule.attributesToSubstitution(e))
-		)
+		)--,
+		--contextMachine : AMN!AbstractMachine (
+		--	name <- 'Context' + adt.typeInModule.name
+		--)
 }
 
 lazy rule attributesToVariables {

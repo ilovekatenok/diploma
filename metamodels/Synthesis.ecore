@@ -213,7 +213,7 @@
   <eSubpackages name="Formulae" nsURI="http://Synthesis.ecore/Formulae" nsPrefix="syn-form">
     <eClassifiers xsi:type="ecore:EClass" name="QuantifiedFormula" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
-          eType="#//Formulae/Formula" containment="true"/>
+          eType="#//Formulae/Formula"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
           upperBound="-1" eType="#//Formulae/Variable" defaultValueLiteral=""/>
     </eClassifiers>
@@ -223,7 +223,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
-          eType="#//Formulae/Formula" containment="true"/>
+          eType="#//Formulae/Formula"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Implication" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="consequent" lowerBound="1"
