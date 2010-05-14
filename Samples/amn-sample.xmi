@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="AMNExpression" xmlns:_1="AMNSubstitution" xmlns:_2="AMNPredicate" xmlns:amn="http://amn/1.0">
+  <amn:AbstractMachine>
+    <name>ContextAgency</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine sees="/0">
+    <name>Specialist</name>
+  </amn:AbstractMachine>
+  <amn:AbstractMachine sees="/0" operations="/3">
+    <name>Dispatcher</name>
+  </amn:AbstractMachine>
+  <amn:Operation substitution="/5" inputParams="/4 /13" outputParams="/10">
+    <name>OPERATION check_experts</name>
+  </amn:Operation>
+  <Variable name="o"/>
+  <_1:Precondition pre="/6"/>
+  <_2:Conjunction sign="&amp;" predicate="/7 /11 /14"/>
+  <_2:AtomicPredicate sign="Belongs" expression="/8 /9"/>
+  <Variable name="o"/>
+  <NamedConstant name="extDispatcher"/>
+  <Variable name="revi"/>
+  <_2:AtomicPredicate sign="Belongs to Datatype In operation" expression="/10 /12"/>
+  <NamedConstant name="Specialist"/>
+  <Variable name="is_exper"/>
+  <_2:AtomicPredicate sign="Belongs to Datatype In operation" expression="/13 /15"/>
+  <NamedConstant name="Boolean"/>
+</xmi:XMI>

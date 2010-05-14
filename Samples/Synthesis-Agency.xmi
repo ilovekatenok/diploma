@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
   <syn:SchemaDef name="AgencySchema" modules="/1"/>
-  <syn:ModuleDef containedTypes="/2 /3 /4 /5" schema="/0"/>
+  <syn:ModuleDef name="Agency" containedTypes="/2 /3 /4 /5" schema="/0"/>
   <syn:ADTDef name="Specialist" typeInModule="/1" values="/4"/>
-  <syn:ADTDef name="Dispatcher" typeInModule="/1"/>
-  <syn:SetDef typeOfValue="/2" name="SetOfSpecialist" typeInModule="/1" values="/6 /8"/>
-  <syn:EnumDef name="Boolean" typeInModule="/1" values="/7"/>
-  <syn:AttributeDef typeOfValue="/4" name="experts"/>
-  <syn:AttributeDef typeOfValue="/5" name="experts_got"/>
-  <syn:AttributeDef typeOfValue="/4" name="relevant_experts"/>
+  <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /6"/>
+  <syn:SetDef typeOfValue="/2" name="SetOfSpecialist" typeInModule="/1"/>
+  <syn:EnumDef name="Boolean" typeInModule="/1"/>
+  <syn:AttributeDef name="experts" attributeOf="/3" type="/4"/>
+  <syn:AttributeDef name="experts_got" type="/5"/>
+  <syn:AttributeDef name="relevant_experts" type="/4"/>
   <syn:AttributeDef name="get_experts"/>
-  <syn:AttributeDef typeOfValue="/13" name="check_experts"/>
+  <syn:AttributeDef name="check_experts" attributeOf="/3" type="/13"/>
   <syn:AttributeDef name="count_experts"/>
   <syn:AttributeDef name="appoint"/>
-  <syn:FunctionDef name="checkExpertFunction" values="/10" predicativeSpec="/14"/>
+  <syn:FunctionDef name="checkExpertFunction" parameters="/26 /25" predicativeSpec="/14"/>
   <syn-form:Conjunction stringRepr="^is_empty and ex ..." formula="/15 /18"/>
   <syn-form:Negation stringRepr="^is_empty" formula="/16"/>
   <syn-form:BuiltInPredicate stringRepr="is_empty(...)" terms="/17" symbol="is_empty"/>
@@ -25,4 +25,6 @@
   <syn-form:ArithmeticPredicate stringRepr="this.experts~ = exclude(exp, this.experts)" terms="/23 /24"/>
   <syn-form:SetFunction name="this.experts~" attribute="/6"/>
   <syn-form:BuiltInFunction name="exclude(exp, this.experts)" terms="/19 /17"/>
+  <syn:ParameterDef name="is_exper" parameterKind="input" parameterOf="/13" type="/5"/>
+  <syn:ParameterDef name="revi" parameterKind="output" parameterOf="/13" type="/2"/>
 </xmi:XMI>
