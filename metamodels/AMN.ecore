@@ -68,31 +68,49 @@
   </eClassifiers>
   <eSubpackages name="AMNPredicate">
     <eClassifiers xsi:type="ecore:EClass" name="Predicate">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringRepr" lowerBound="1"
           eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AtomicPredicate" eSuperTypes="#//AMNPredicate/Predicate">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="2"
-          upperBound="2" eType="#//AMNExpression/Expression"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CompoundPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+    <eClassifiers xsi:type="ecore:EClass" name="QuantifiedPredicate">
       <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-          upperBound="-1" eType="#//AMNPredicate/Predicate"/>
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+          eType="#//AMNExpression/Variable"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Bracketed" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Implication" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Equivalence" eSuperTypes="#//AMNPredicate/CompoundPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="UniversalPredicate" eSuperTypes="#//AMNPredicate/CompoundPredicate">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
-          upperBound="-1" eType="#//AMNExpression/Variable"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AtomicPredicate" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" upperBound="-1"
+          eType="#//AMNExpression/Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sing" lowerBound="1"
+          eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExistentialPredicate" eSuperTypes="#//AMNPredicate/CompoundPredicate">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
-          upperBound="-1" eType="#//AMNExpression/Variable"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Bracketed">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Implication" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="consequent" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="antecedent" lowerBound="1"
+          eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Equivalence" eSuperTypes="#//AMNPredicate/Predicate">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="2"
+          upperBound="2" eType="#//AMNPredicate/Predicate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="UniversallyQuantified" eSuperTypes="#//AMNPredicate/QuantifiedPredicate"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExistentialPredicate" eSuperTypes="#//AMNPredicate/QuantifiedPredicate"/>
   </eSubpackages>
   <eSubpackages name="AMNExpression">
     <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
@@ -128,7 +146,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="#//AMNExpression/Expression">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
-          eType="#//PrimitiveTypes/String"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StringValue" eSuperTypes="#//AMNExpression/Expression">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
@@ -136,10 +154,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IntegerValue" eSuperTypes="#//AMNExpression/Expression">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
-          eType="#//PrimitiveTypes/String"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SetValue" eSuperTypes="#//AMNExpression/Expression">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
           eType="#//AMNExpression/Expression"/>
     </eClassifiers>
   </eSubpackages>
