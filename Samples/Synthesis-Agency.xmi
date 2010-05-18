@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
   <syn:SchemaDef name="AgencySchema" modules="/1"/>
   <syn:ModuleDef name="Agency" containedTypes="/2 /3 /4 /5" schema="/0"/>
-  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4 /19"/>
-  <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /6"/>
+  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4 /19" attributes="/6" supertypes="/3"/>
+  <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /9" subtypes="/2"/>
   <syn:SetDef typeOfValue="/2" name="SetOfSpecialist" typeInModule="/1"/>
   <syn:EnumDef name="Boolean" typeInModule="/1"/>
-  <syn:AttributeDef name="experts" attributeOf="/3" type="/4"/>
+  <syn:AttributeDef name="experts" attributeOf="/2" type="/4"/>
   <syn:AttributeDef name="experts_got" type="/5"/>
   <syn:AttributeDef name="relevant_experts" type="/4"/>
-  <syn:AttributeDef name="get_experts"/>
+  <syn:AttributeDef name="get_experts" attributeOf="/3"/>
   <syn:AttributeDef name="check_experts" attributeOf="/3" type="/13"/>
   <syn:AttributeDef name="count_experts"/>
   <syn:AttributeDef name="appoint"/>
   <syn:FunctionDef name="checkExpertFunction" parameters="/26 /25" predicativeSpec="/15"/>
   <syn-form:Conjunction stringRepr="^is_empty and ex ..." formula="/15 /18"/>
-  <syn-form:Negation stringRepr="^setFunc test" formula="/22"/>
+  <syn-form:Negation stringRepr="^setFunc test">
+    <formula xsi:type="syn-form:Atom" terms="/17"/>
+  </syn-form:Negation>
   <syn-form:BuiltInPredicate stringRepr="is_empty(...)" terms="/17" symbol="is_empty"/>
   <syn-form:GetFunction name="this.experts" attribute="/6"/>
-  <syn-form:ExsistentiallyQuantifiedFormula stringRepr="ex exp ..." formula="/20" variables="/19"/>
+  <syn-form:ExsistentiallyQuantifiedFormula stringRepr="ex exp ..." variables="/19">
+    <formula href="#/20"/>
+  </syn-form:ExsistentiallyQuantifiedFormula>
   <syn-form:Variable typeOfValue="/2" name="exp"/>
-  <syn-form:Conjunction formula="/21 /22"/>
+  <syn-form:Conjunction formula="/21"/>
   <syn-form:BuiltInPredicate stringRepr="in_set(exp, this.experts)" terms="/19 /17" symbol="in_set"/>
-  <syn-form:ArithmeticPredicate stringRepr="this.experts~ = exclude(exp, this.experts)" terms="/23 /24"/>
+  <syn-form:ArithmeticPredicate stringRepr="this.experts~ = exclude(exp, this.experts)" terms="/24 /17"/>
   <syn-form:SetFunction name="this.experts~" attribute="/6"/>
   <syn-form:BuiltInFunction name="exclude" terms="/19 /17"/>
   <syn:ParameterDef name="is_exper" parameterKind="input" parameterOf="/13" type="/5"/>

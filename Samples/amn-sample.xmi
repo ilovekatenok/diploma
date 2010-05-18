@@ -3,36 +3,46 @@
   <amn:AbstractMachine>
     <name>ContextAgency</name>
   </amn:AbstractMachine>
-  <amn:AbstractMachine sees="/0">
+  <amn:AbstractMachine sees="/0" extendsClause="/2">
     <name>Specialist</name>
   </amn:AbstractMachine>
-  <amn:AbstractMachine sees="/0" operations="/3">
+  <amn:AbstractMachine sees="/0 /1" operations="/3">
     <name>Dispatcher</name>
   </amn:AbstractMachine>
-  <amn:Operation substitution="/5" inputParams="/4 /24" outputParams="/21">
+  <amn:Operation substitution="/5" inputParams="/4 /33" outputParams="/29">
     <name>OPERATION check_experts</name>
   </amn:Operation>
   <Variable name="o"/>
   <_1:Precondition pre="/6" thenPart="/10"/>
-  <_2:Conjunction predicate="/7 /22 /25"/>
+  <_2:Conjunction predicate="/7 /31 /35"/>
   <_2:AtomicPredicate expression="/8 /9" sign="Belongs"/>
   <Variable name="o"/>
   <NamedConstant name="extDispatcher"/>
-  <_1:Any any="/17"/>
-  <_2:Conjunction predicate="/13"/>
-  <_2:Conjunction predicate="/19"/>
+  <_1:Any any="/30" where="/14" thenPart="/11"/>
+  <_1:SequenceSubst/>
+  <_2:Conjunction predicate="/14"/>
+  <_2:Conjunction predicate="/27"/>
   <_2:Negation/>
-  <BinaryOperator sign="()" expression="/15 /16"/>
+  <BinaryOperator sign="()" expression="/16 /17"/>
   <Variable name="experts"/>
   <Variable name="o"/>
-  <Variable name="v0"/>
-  <_2:AtomicPredicate expression="/14" sign="is_empty"/>
-  <_2:AtomicPredicate expression="/14" sign="in_set"/>
-  <FunctionalExpression sign="exclude" expression="/14"/>
+  <Variable name="v1"/>
+  <_1:BecomesEqual leftExpression="/20" rightExpression="/18"/>
+  <BinaryOperator sign="()" expression="/21 /22"/>
+  <Variable name="experts"/>
+  <Variable name="o"/>
+  <_1:BecomesEqual leftExpression="/25" rightExpression="/24"/>
+  <BinaryOperator sign="binaryCorrespondence" expression="/21 /18"/>
+  <NamedConstant name="set_experts"/>
+  <_2:AtomicPredicate expression="/15" sign="is_empty"/>
+  <_2:AtomicPredicate expression="/15" sign="in_set"/>
+  <FunctionalExpression sign="exclude" expression="/15"/>
   <Variable name="revi"/>
-  <_2:AtomicPredicate expression="/21 /23" sign="Belongs to Datatype In operation"/>
+  <Variable name="v0"/>
+  <_2:AtomicPredicate expression="/29 /32" sign="Belongs to Datatype In operation"/>
   <NamedConstant name="Specialist"/>
   <Variable name="is_exper"/>
-  <_2:AtomicPredicate expression="/24 /26" sign="Belongs to Datatype In operation"/>
+  <Variable name="v1"/>
+  <_2:AtomicPredicate expression="/33 /36" sign="Belongs to Datatype In operation"/>
   <NamedConstant name="Boolean"/>
 </xmi:XMI>

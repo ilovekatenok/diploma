@@ -255,7 +255,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="substitution" lowerBound="1"
           eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Sequence" eSuperTypes="#//AMNSubstitution/Substitution">
+    <eClassifiers xsi:type="ecore:EClass" name="SequenceSubst" eSuperTypes="#//AMNSubstitution/Substitution">
       <eStructuralFeatures xsi:type="ecore:EReference" name="substitution" lowerBound="2"
           upperBound="2" eType="#//AMNSubstitution/Substitution"/>
     </eClassifiers>
