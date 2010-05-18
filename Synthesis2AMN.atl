@@ -4,8 +4,10 @@ create OUT:AMN from IN:Synthesis;
 -- =============================================================================
 -- HELPERS
 -- =============================================================================
-	
-	helper context Synthesis!Formula def: splitToAtoms(): Sequence(Synthesis!Atom) =
+						
+	helper def: counter : Integer = 0;
+
+helper context Synthesis!Formula def: splitToAtoms(): Sequence(Synthesis!Atom) =
 	if self.oclIsKindOf(Synthesis!Atom) then
 		Sequence{self}
 	else
@@ -234,7 +236,6 @@ rule SynthesisADT2AMNAbstractMachine {
 			--extendsClause <- adt.supertypes,
 		)--,
 --		predicate : AMN!Conjunction (
---			sign <- '&',
 --			predicate <- adt.attributes->collect(e | thisModule.attributesToInvariants(e))
 --		),
 --		initSubt : AMN!Simultaneous (
@@ -458,11 +459,10 @@ rule functionalattributesToOperations {
 			name <- 'o'			
 		),
 		subst : AMN!Precondition (
-			pre <- precondPredicate--,
-			--thenPart <- thenSubstAny 
+			pre <- precondPredicate,
+			thenPart <- thenSubstAny 
 		),
 		precondPredicate : AMN!Conjunction ( 
-			sign <- '&',
 			predicate <- objPred
 		),
 		objPred : AMN!AtomicPredicate (
@@ -475,12 +475,12 @@ rule functionalattributesToOperations {
 		),
 		rightAtomic : AMN!NamedConstant (
 			name <- 'ext' + at.attributeOf.name
-		)--,
---		thenSubstAny : AMN!Any (
---			any <- --,
---			--where <- ,
+		),
+		thenSubstAny : AMN!Any (
+			--any <-,
+			--where <- ,
 --			--thenPart <- 
---		)
+		)
 	do {
 		for ( e in at.type.parameters ) {
 			thisModule.generateParameters(e, at);
@@ -536,6 +536,10 @@ rule generateParameters ( param : Synthesis!ParameterDef, attr : Synthesis!Attri
 	}
 }
 
+-- =============================================================================
+-- Построение трансформации формул СИНТЕЗа в предикаты AMN
+-- =============================================================================
+
 rule conjunctionToAMNConjunciton {
 	from 
 		conjSynth : Synthesis!Conjunction(conjSynth.oclIsTypeOf(Synthesis!Conjunction))
@@ -545,11 +549,11 @@ rule conjunctionToAMNConjunciton {
 		)
 }
 
-rule disjuncitonToAMNDisjunciton {
+rule disjunctionToAMNDisjunction {
 	from 
-		disjSynth : Synthesis!Disjunciton(disjSynth.oclIsTypeOf(Synthesis!Disjunciton))
+		disjSynth : Synthesis!Disjunction(disjSynth.oclIsTypeOf(Synthesis!Disjunction))
 	to
-		disjAMN : AMN!Disjunciton (
+		disjAMN : AMN!Disjunction (
 			predicate <- disjSynth.formula
 		)
 }
@@ -575,12 +579,85 @@ rule implicationToAMNImplication {
 
 rule quantifiedToAMNQuantified {
 	from 
-		quanSynth : Synthesis!Quantified(quanSynth.oclIsTypeOf(Synthesis!Quantified))
+		quanSynth : Synthesis!QuantifiedFormula(quanSynth.oclIsTypeOf(Synthesis!QuantifiedFormula))
 	to
-		quanAMN : AMN!Quantified (
-			predicate <- quanSynth.formula,
+		quanAMN : AMN!QuantifiedFormula (
+			predicate <- Sequence {typedVarConj,quanSynth.formula},
 			variables <- quanSynth.variables
+		),
+		typedVarConj : AMN!Conjunction (
+			predicate <- quanSynth.variables->collect(e | thisModule.quantVarsToTypedVarPredicate(e))
+		)		
+}
+
+lazy rule quantVarsToTypedVarPredicate {
+	from 
+		synthVar : Synthesis!Variable(synthVar.oclIsTypeOf(Synthesis!Variable))
+	to
+		atomConj : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- leftAtomic,
+			expression <- rightAtomic
+		),
+		leftAtomic : AMN!Variable (
+			name <- synthVar.name
+		),
+		rightAtomic : AMN!NamedConstant (
+			name <- 'ext_' + synthVar.typeOfValue
 		)
+}
+
+rule getFunciton2AMNExpression {
+	from 
+		synthGetFunction : Synthesis!GetFunction(synthGetFunction.oclIsTypeOf(Synthesis!GetFunction))
+	to 
+		expression : AMN!BinaryOperator (
+			sign <- '()',
+			expression <- Sequence {varAttr,varObjType}
+		),
+		varAttr : AMN!Variable (
+			name <- synthGetFunction.attribute.name
+		),
+		varObjType : AMN!Variable (
+		)
+	do {
+		if ( synthGetFunction.name.startsWith('this') ) {
+			varObjType.name <- 'o';
+		}
+	}
+}
+
+rule setFunction2AMNExpression {
+	from
+		synthSetFunction : Synthesis!SetFunction(synthSetFunction.oclIsTypeOf(Synthesis!SetFunction))
+	to 
+		var : AMN!Variable (
+			name <- 'v' + thisModule.counter
+		)
+	do {
+		thisModule.counter <- thisModule.counter + 1;
+		for ( funcAttr in Synthesis!AttributeDef.allInstances()->select(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
+																	then true
+																	else false
+																	endif)) {
+			for ( atom in funcAttr.type.predicativeSpec.splitToAtoms()) {
+				for ( term in atom.terms ) {
+					if ( term.oclIsTypeOf(Synthesis!SetFunction) ) {
+						if ( term.name = synthSetFunction.name ) {
+							thisModule.resolveTemp(Synthesis!AttributeDef.allInstances()->
+									any(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
+												then if m.name = funcAttr.name 
+														then true
+														else false
+														endif
+												else false
+											endif),'thenSubstAny').any<-var;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 rule atomToAMNAtomicPredicate {
@@ -629,13 +706,24 @@ rule termToAMNSetValue {
 		)
 }
 
---rule conjunctionToAMNConjucntion {
---	from 
---		conjSynth : Synthesis!Conjunction(conjSynth.oclIsTypeOf(Synthesis!Conjunction))
---	to
---		conjAMN : AMN!Conjunction (
---				
---		)
---}
+rule builtInPredicate2AtomicPredicate {
+	from 
+		builtIn : Synthesis!BuiltInPredicate(builtIn.oclIsTypeOf(Synthesis!BuiltInPredicate))
+	to
+		atomPred : AMN!AtomicPredicate (
+			sign <- builtIn.symbol,
+			expression <- builtIn.terms
+		)
+}
+
+rule builtInFunction2FunctionalExpression {
+	from 
+		builtIn : Synthesis!BuiltInFunction(builtIn.oclIsTypeOf(Synthesis!BuiltInFunction))
+	to
+		funcExp : AMN!FunctionalExpression (
+			sign <- builtIn.name,
+			expression <- builtIn.terms
+		)
+}
 
 

@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
   <syn:SchemaDef name="AgencySchema" modules="/1"/>
   <syn:ModuleDef name="Agency" containedTypes="/2 /3 /4 /5" schema="/0"/>
-  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4"/>
+  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4 /19"/>
   <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /6"/>
   <syn:SetDef typeOfValue="/2" name="SetOfSpecialist" typeInModule="/1"/>
   <syn:EnumDef name="Boolean" typeInModule="/1"/>
@@ -13,23 +13,18 @@
   <syn:AttributeDef name="check_experts" attributeOf="/3" type="/13"/>
   <syn:AttributeDef name="count_experts"/>
   <syn:AttributeDef name="appoint"/>
-  <syn:FunctionDef name="checkExpertFunction" parameters="/26 /25" predicativeSpec="/14"/>
+  <syn:FunctionDef name="checkExpertFunction" parameters="/26 /25" predicativeSpec="/15"/>
   <syn-form:Conjunction stringRepr="^is_empty and ex ..." formula="/15 /18"/>
-  <syn-form:Negation stringRepr="^is_empty" formula="/16"/>
+  <syn-form:Negation stringRepr="^setFunc test" formula="/22"/>
   <syn-form:BuiltInPredicate stringRepr="is_empty(...)" terms="/17" symbol="is_empty"/>
   <syn-form:GetFunction name="this.experts" attribute="/6"/>
   <syn-form:ExsistentiallyQuantifiedFormula stringRepr="ex exp ..." formula="/20" variables="/19"/>
-  <syn-form:Variable name="exp"/>
-  <syn-form:Conjunction formula="/21 /22 /27"/>
-  <syn-form:BuiltInPredicate stringRepr="in_set(exp, this.experts)" terms="/19 /17"/>
+  <syn-form:Variable typeOfValue="/2" name="exp"/>
+  <syn-form:Conjunction formula="/21 /22"/>
+  <syn-form:BuiltInPredicate stringRepr="in_set(exp, this.experts)" terms="/19 /17" symbol="in_set"/>
   <syn-form:ArithmeticPredicate stringRepr="this.experts~ = exclude(exp, this.experts)" terms="/23 /24"/>
   <syn-form:SetFunction name="this.experts~" attribute="/6"/>
-  <syn-form:BuiltInFunction name="exclude(exp, this.experts)" terms="/19 /17"/>
+  <syn-form:BuiltInFunction name="exclude" terms="/19 /17"/>
   <syn:ParameterDef name="is_exper" parameterKind="input" parameterOf="/13" type="/5"/>
   <syn:ParameterDef name="revi" parameterKind="output" parameterOf="/13" type="/2"/>
-  <syn-form:Atom stringRepr="=" terms="/28" symbol="="/>
-  <syn:SetValueDef values="/29 /30 /31"/>
-  <syn:IntegerValueDef value="13"/>
-  <syn:StringValueDef value="fucking string"/>
-  <syn:BooleanValueDef value="true"/>
 </xmi:XMI>

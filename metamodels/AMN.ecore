@@ -80,7 +80,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="AtomicPredicate" eSuperTypes="#//AMNPredicate/Predicate">
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" upperBound="-1"
           eType="#//AMNExpression/Expression"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sing" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1"
           eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Bracketed">
