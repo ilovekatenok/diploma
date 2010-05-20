@@ -1,0 +1,9 @@
+-- =============================================================================
+-- OWL2XML query
+-- Version 1.0
+-- Release date : 19/05/2010
+-- Author : Dennis Kopin (dennis.kopin@gmail.com)
+-- =============================================================================
+
+query AMN2Text_query = AMN!AbstractMachine.allInstances()->first().toString().writeTo('c:/AMN-Agency.amn');
+uses AMN2String;

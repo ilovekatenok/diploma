@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project name="Synthesis2OWL" default="run" basedir=".">
+	<property name="synthesisPath" value="../metamodels/Synthesis.ecore" />
+	<property name="amnPath" value="../metamodels/AMN.ecore" />
+
+	<target name="run">
+		<!-- Loading metamodels -->
+		
+		<atl.loadModel name="Synthesis" metamodel="%EMF" path="${synthesisPath}"/>
+		<atl.loadModel name="AMN" metamodel="%EMF" path="${amnPath}"/>
+		<!-- Loading terminal models -->
+		<atl.loadModel name="Synthesis-Agency" metamodel="Synthesis" path="../Samples/Synthesis-Agency.xmi" />
+
+		<!-- Launching transformation: notice that IN and OUT identifiers come from the corresponding ATL module-->  
+		<atl.launch path="../Synthesis2AMN.asm">
+		    <inmodel name="IN" model="Synthesis-Agency"/>
+		    <outmodel name="OUT" model="AMN-Agency" metamodel="AMN"/>
+	    </atl.launch>
+		
+		<atl.launch  path="../AMN2Text-query.asm">
+			<inmodel name="IN" model="AMN-Agency"/>
+			<library name="ATL2String" path="../AMN2String.asm"/>
+		</atl.launch>
+		
+		<atl.saveModel model="AMN-Agency" path="../Samples/amn-sample.xmi" />
+		
+	</target>
+
+</project>

@@ -1,0 +1,41 @@
+library AMN2String;
+
+-- =============================================================================
+-- AMN2String
+-- Version 1.0
+-- Release date : 20/05/2010
+-- Author : Aleksey Sergeev (ilovekatenok@gmail.com)
+-- =============================================================================
+	
+helper context AMN!AbstractMachine def: toString() : String = 
+	'MACHINE\n\n'    + 
+	'\t' + self.name + '\n' +
+	'\nSETS\n\n' +  
+	self.sets->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +
+	'\nCONSTANTS\n\n' + 
+	self.abstractConstants->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +
+	'\nPROPERTIES\n\n' +
+	self.properties.toString();
+	
+helper context AMN!NamedConstant def: toString() : String =
+	self.name;
+
+helper context AMN!Deferred def: toString() : String =
+	self.name;
+	
+helper context AMN!Conjunction def: toString() : String = 
+	self.predicate->iterate(i; acc : String ='\t'|acc+i.toString()+' &\n\t');
+
+helper context AMN!AtomicPredicate def: toString() : String =
+	let expSeq : Sequence(AMN!Expression) = self.expression->asSequence()
+	   in	' ' + expSeq.at(1).toString() + ' ' + self.sign + ' ' +expSeq.at(2).toString() + ' ';
+
+helper context AMN!FunctionalExpression def: toString() : String =
+	self.expression->iterate(i; acc : String =''|acc+self.sign+'('+i.toString()+')');
+
+helper context AMN!BinaryOperator def: toString() : String =
+	self.expression->iterate(i; acc : String =''|acc+i.toString()+' '+self.sign+' ');
+
+helper context AMN!SetValue def: toString() : String = 
+	self.values->iterate(i; acc : String ='{'|acc+i.toString()+',') + '}';
+
