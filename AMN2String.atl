@@ -10,14 +10,31 @@ library AMN2String;
 helper context AMN!AbstractMachine def: toString() : String = 
 	'MACHINE\n\n'    + 
 	'\t' + self.name + '\n' +
+	'\nEXTENDS\n\n'    +
+	self.extendsClause->iterate(i; acc : String ='\t'|acc+i.name+',\n\t') +
+	'\nSEES\n\n'    +
+	self.sees->iterate(i; acc : String ='\t'|acc+i.name+',\n\t') +
+	'\nINCLUDES\n\n'    +
+	self.includes->iterate(i; acc : String ='\t'|acc+i.name+',\n\t') +
+	'\nUSES\n\n'    +
+	self.usesClause->iterate(i; acc : String ='\t'|acc+i.name+',\n\t') +
 	'\nSETS\n\n' +  
 	self.sets->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +
 	'\nCONSTANTS\n\n' + 
 	self.abstractConstants->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +
+	'\nVARIABLES\n\n' + 
+	self.abstractVariables->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +	
 	'\nPROPERTIES\n\n' +
-	self.properties.toString();
+	self.properties.toString() + 
+	'\nINITIALIZATION\n\n' +
+	self.initialization.toString() +
+	'\nOPERATION\n\n' +
+	self.operations->iterate(i; acc : String =''|acc+i.toString()+'\n\n');
 	
 helper context AMN!NamedConstant def: toString() : String =
+	self.name;
+
+helper context AMN!Variable def: toString() : String =
 	self.name;
 
 helper context AMN!Deferred def: toString() : String =
@@ -25,6 +42,12 @@ helper context AMN!Deferred def: toString() : String =
 	
 helper context AMN!Conjunction def: toString() : String = 
 	self.predicate->iterate(i; acc : String ='\t'|acc+i.toString()+' &\n\t');
+
+helper context AMN!Negation def: toString() : String = 
+	'not ' + self.predicate.toString();
+
+--helper context AMN!AtomicPredicate def: toString() : String =
+--	self.expression->iterate(i; acc : String =''|acc+self.sign+'('+i.toString()+')');
 
 helper context AMN!AtomicPredicate def: toString() : String =
 	let expSeq : Sequence(AMN!Expression) = self.expression->asSequence()
@@ -38,4 +61,33 @@ helper context AMN!BinaryOperator def: toString() : String =
 
 helper context AMN!SetValue def: toString() : String = 
 	self.values->iterate(i; acc : String ='{'|acc+i.toString()+',') + '}';
+	
+helper context AMN!Simultaneous def: toString() : String =
+	self.substitution->iterate(i; acc : String =''|acc+i.toString()+'\n||\n');
+	
+helper context AMN!Any def: toString() : String =
+	' ANY ' + self.any->iterate(i; acc : String =''|acc+i.toString()+',') + ' WHERE\n' +
+	self.where.toString() + '\n' +
+	' THEN\n' +
+	self.thenPart.toString() + '\n' +
+	' END\n';
+
+helper context AMN!BecomesEqual def: toString() : String =
+	self.leftExpression->first().toString() + ' := ' +self.rightExpression->first().toString();
+
+helper context AMN!Precondition def: toString() : String =
+	' PRE ' + self.pre.toString() + '\n' +
+	' THEN ' + self.thenPart.toString();
+
+helper context AMN!SequenceSubst def: toString() : String =
+	self.substitution->iterate(i; acc : String =''|acc+i.toString()+';\n');
+
+helper context AMN!Call def: toString() : String = 
+	self.operationName + '(' + self.actualParam.toString() + ')';
+
+helper context AMN!Operation def: toString() : String =
+	self.outputParams->iterate(i; acc : String =''|acc+i.toString()+',') + ' <-- ' +
+	self.name + '(' + self.inputParams->iterate(i; acc : String =''|acc+i.toString()+',') + ')' + '\n' +
+	self.substitution.toString() + '\n' +
+	'END;';
 

@@ -190,8 +190,8 @@ rule genStrictInclusionFromSubtype(adt : Synthesis!ADTDef, subType : Synthesis!A
 rule attribute2ATDMachineSections {
 	from
 		at : Synthesis!AttributeDef(
-			-- at.isNotFunctional()
-			false	
+			at.isNotFunctional()
+			--false	
 		) 
 	to
 		totalFunction : AMN!BinaryOperator (
@@ -289,10 +289,10 @@ rule attributeTypeStringExp(attr : Synthesis!AttributeDef, stringVal : String) {
 rule attributeTypeSetDef(attr : Synthesis!AttributeDef) {
 	to
 		funcExp : AMN!FunctionalExpression (
-			sign <- 'POW'
+			sign <- 'POW',
+			expression <- thisModule.resolveTemp(attr.type.ofType, 'ext')
 		)
 	do {
-		funcExp.expression <- thisModule.resolveTemp(attr.type.ofType, 'ext');
 		thisModule.resolveTemp(attr, 'totalFunction').expression <- funcExp;
 		thisModule.resolveTemp(attr, 'rightExpPartial').expression <- funcExp;
 	}
@@ -521,6 +521,11 @@ rule setFunction2AMNExpression {
 		var : AMN!Variable (
 			name <- 'v' + thisModule.counter
 		),
+		varType : AMN!AtomicPredicate (
+			sign <- 'Belongs',
+			expression <- var,
+			expression <- thisModule.resolveTemp(synthSetFunction.attribute.attributeOf, 'ext')
+		),
 		varParam : AMN!Variable (
 			name <- synthSetFunction.name.split('\\.')->first()
 		),
@@ -556,33 +561,13 @@ rule setFunction2AMNExpression {
 				for ( term in atom.terms ) {
 					if ( term.oclIsTypeOf(Synthesis!SetFunction) ) {
 						if ( term.name = synthSetFunction.name ) {
-							thisModule.resolveTemp(Synthesis!AttributeDef.allInstances()->
-									any(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
-												then if m.name = funcAttr.name 
-														then true
-														else false
-														endif
-												else false
-											endif),'thenSubstAny').any<-var;
+							thisModule.resolveTemp(funcAttr,'thenSubstAny').any<-var;
+							thisModule.resolveTemp(funcAttr,'whereConj').predicate<-varType;
 							if ( funcAttr.attributeOf = synthSetFunction.attribute.attributeOf ) {
-								thisModule.resolveTemp(Synthesis!AttributeDef.allInstances()->
-										any(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
-													then if m.name = funcAttr.name 
-															then true
-															else false
-															endif
-													else false
-												endif),'sequenceSubstitution').substitution<-varSubstBecomesEqual;
+								thisModule.resolveTemp(funcAttr,'sequenceSubstitution').substitution<-varSubstBecomesEqual;
 							}
 							else {
-								thisModule.resolveTemp(Synthesis!AttributeDef.allInstances()->
-										any(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
-													then if m.name = funcAttr.name 
-															then true
-															else false
-															endif
-													else false
-												endif),'sequenceSubstitution').substitution<-setExternalVar;
+								thisModule.resolveTemp(funcAttr,'sequenceSubstitution').substitution<-setExternalVar;
 								if ( not thisModule.resolveTemp(funcAttr.attributeOf, 'am').includes->
 											exists(m|m.name = thisModule.resolveTemp(synthSetFunction.attribute.attributeOf, 'am').name) ) {
 								thisModule.resolveTemp(funcAttr.attributeOf, 'am').includes <-

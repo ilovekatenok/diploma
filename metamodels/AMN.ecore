@@ -25,7 +25,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" eType="#//AMNPredicate/Predicate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includes" upperBound="-1"
         eType="#//AbstractMachine"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="uses" upperBound="-1" eType="#//AbstractMachine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usesClause" upperBound="-1"
+        eType="#//AbstractMachine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abstractConstants" upperBound="-1"
         eType="#//Element"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abstractVariables" upperBound="-1"

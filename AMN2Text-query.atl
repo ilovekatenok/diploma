@@ -5,5 +5,5 @@
 -- Author : Dennis Kopin (dennis.kopin@gmail.com)
 -- =============================================================================
 
-query AMN2Text_query = AMN!AbstractMachine.allInstances()->first().toString().writeTo('c:/AMN-Agency.amn');
+query AMN2Text_query = AMN!AbstractMachine.allInstances()->collect(c| c.toString().writeTo('c:/'+ c.name + '.amn'));
 uses AMN2String;

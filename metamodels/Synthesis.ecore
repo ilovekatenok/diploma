@@ -215,7 +215,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
           eType="#//Formulae/Formula"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" lowerBound="1"
-          upperBound="-1" eType="#//Formulae/Variable" defaultValueLiteral=""/>
+          upperBound="-1" eType="#//Formulae/Variable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//Formulae/Formula">
       <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="2"
