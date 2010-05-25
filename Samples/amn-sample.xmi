@@ -5,104 +5,112 @@
   <amn:Deferred name="OID"/>
   <NamedConstant name="Obj"/>
   <NamedConstant name="self"/>
-  <_1:Conjunction predicate="/6 /8 /10 /15 /26 /99"/>
-  <_1:AtomicPredicate expression="/3 /7" sign="Belongs"/>
-  <FunctionalExpression sign="POW" expression="/1"/>
-  <_1:AtomicPredicate expression="/4 /9" sign="Belongs"/>
-  <BinaryOperator sign="TotalBijection" expression="/3 /2"/>
-  <_1:AtomicPredicate expression="/11 /12" sign="Equals"/>
-  <BinaryOperator sign="Intesection" expression="/13 /14 /24 /25"/>
+  <_1:Conjunction predicate="/6 /8 /10 /15 /26 /106"/>
+  <_1:AtomicPredicate expression="/3 /7" sign=":"/>
+  <FunctionalExpression expression="/1" sign="POW"/>
+  <_1:AtomicPredicate expression="/4 /9" sign=":"/>
+  <BinaryOperator sign=">->>" expression="/3 /2"/>
+  <_1:AtomicPredicate expression="/11 /12" sign="="/>
+  <BinaryOperator sign="/\" expression="/13 /14 /24 /25"/>
   <SetValue/>
   <NamedConstant name="extp_Specialist"/>
   <NamedConstant name="ext_Specialist"/>
   <_1:Conjunction predicate="/16 /18 /20"/>
-  <_1:AtomicPredicate expression="/14 /17" sign="Belongs"/>
-  <FunctionalExpression sign="POW" expression="/3"/>
-  <_1:AtomicPredicate expression="/13 /19" sign="Belongs"/>
-  <FunctionalExpression sign="POW" expression="/3"/>
-  <_1:AtomicPredicate expression="/13 /14" sign="Inclusion"/>
-  <amn:AbstractMachine name="Specialist" sees="/0" extendsClause="/32" invariant="/22" initialization="/23" operations="/39 /53 /67" abstractVariables="/37 /51 /65"/>
-  <_1:Conjunction predicate="/38 /52 /66"/>
+  <_1:AtomicPredicate expression="/14 /17" sign=":"/>
+  <FunctionalExpression expression="/3" sign="POW"/>
+  <_1:AtomicPredicate expression="/13 /19" sign=":"/>
+  <FunctionalExpression expression="/3" sign="POW"/>
+  <_1:AtomicPredicate expression="/13 /14" sign="&lt;:"/>
+  <amn:AbstractMachine name="Specialist" sees="/0" extendsClause="/32" invariant="/22" initialization="/23" operations="/39 /53 /67" abstractVariables="/37 /51 /65 /80"/>
+  <_1:Conjunction predicate="/38 /52 /66 /81 /108"/>
   <_2:Simultaneous substitution="/45 /59 /73"/>
   <NamedConstant name="extp_Dispatcher"/>
   <NamedConstant name="ext_Dispatcher"/>
   <_1:Conjunction predicate="/27 /29 /31"/>
-  <_1:AtomicPredicate expression="/25 /28" sign="Belongs"/>
-  <FunctionalExpression sign="POW" expression="/3"/>
-  <_1:AtomicPredicate expression="/24 /30" sign="Belongs"/>
-  <FunctionalExpression sign="POW" expression="/3"/>
-  <_1:AtomicPredicate expression="/24 /25" sign="Inclusion"/>
-  <amn:AbstractMachine name="Dispatcher" sees="/0 /21" invariant="/33" initialization="/34" operations="/77" includes="/21"/>
-  <_1:Conjunction/>
+  <_1:AtomicPredicate expression="/25 /28" sign=":"/>
+  <FunctionalExpression expression="/3" sign="POW"/>
+  <_1:AtomicPredicate expression="/24 /30" sign=":"/>
+  <FunctionalExpression expression="/3" sign="POW"/>
+  <_1:AtomicPredicate expression="/24 /25" sign="&lt;:"/>
+  <amn:AbstractMachine name="Dispatcher" sees="/0 /21" invariant="/33" initialization="/34" operations="/83" includes="/21" abstractVariables="/77"/>
+  <_1:Conjunction predicate="/78"/>
   <_2:Simultaneous/>
-  <BinaryOperator sign="TotalFunction" expression="/14 /100"/>
+  <BinaryOperator sign="-->" expression="/14 /107"/>
   <Variable name="sav"/>
   <Variable name="experts"/>
-  <_1:AtomicPredicate expression="/37 /35" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/37 /35" sign=":"/>
   <amn:Operation name="set_experts" substitution="/40" inputParams="/36"/>
   <_2:Precondition pre="/41" thenPart="/43"/>
-  <_1:AtomicPredicate expression="/36 /42" sign="Belongs"/>
-  <BinaryOperator sign="PartialFunction" expression="/14 /100"/>
+  <_1:AtomicPredicate expression="/36 /42" sign=":"/>
+  <BinaryOperator sign="+->" expression="/14 /107"/>
   <_2:BecomesEqual leftExpression="/37" rightExpression="/44"/>
-  <BinaryOperator sign="Overwrite" expression="/37 /36"/>
+  <BinaryOperator sign="&lt;+" expression="/37 /36"/>
   <_2:Any any="/46" where="/47" thenPart="/48"/>
   <Variable name="aexperts"/>
-  <_1:AtomicPredicate expression="/46 /35" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/46 /35" sign=":"/>
   <_2:BecomesEqual leftExpression="/37" rightExpression="/46"/>
-  <BinaryOperator sign="TotalFunction" expression="/14"/>
+  <BinaryOperator sign="-->" expression="/14"/>
   <Variable name="sav"/>
   <Variable name="experts_got"/>
-  <_1:AtomicPredicate expression="/51 /49" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/51 /49" sign=":"/>
   <amn:Operation name="set_experts_got" substitution="/54" inputParams="/50"/>
   <_2:Precondition pre="/55" thenPart="/57"/>
-  <_1:AtomicPredicate expression="/50 /56" sign="Belongs"/>
-  <BinaryOperator sign="PartialFunction" expression="/14"/>
+  <_1:AtomicPredicate expression="/50 /56" sign=":"/>
+  <BinaryOperator sign="+->" expression="/14"/>
   <_2:BecomesEqual leftExpression="/51" rightExpression="/58"/>
-  <BinaryOperator sign="Overwrite" expression="/51 /50"/>
+  <BinaryOperator sign="&lt;+" expression="/51 /50"/>
   <_2:Any any="/60" where="/61" thenPart="/62"/>
   <Variable name="aexperts_got"/>
-  <_1:AtomicPredicate expression="/60 /49" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/60 /49" sign=":"/>
   <_2:BecomesEqual leftExpression="/51" rightExpression="/60"/>
-  <BinaryOperator sign="TotalFunction" expression="/14"/>
+  <BinaryOperator sign="-->" expression="/14"/>
   <Variable name="sav"/>
   <Variable name="get_experts"/>
-  <_1:AtomicPredicate expression="/65 /63" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/65 /63" sign=":"/>
   <amn:Operation name="set_get_experts" substitution="/68" inputParams="/64"/>
   <_2:Precondition pre="/69" thenPart="/71"/>
-  <_1:AtomicPredicate expression="/64 /70" sign="Belongs"/>
-  <BinaryOperator sign="PartialFunction" expression="/14"/>
+  <_1:AtomicPredicate expression="/64 /70" sign=":"/>
+  <BinaryOperator sign="+->" expression="/14"/>
   <_2:BecomesEqual leftExpression="/65" rightExpression="/72"/>
-  <BinaryOperator sign="Overwrite" expression="/65 /64"/>
+  <BinaryOperator sign="&lt;+" expression="/65 /64"/>
   <_2:Any any="/74" where="/75" thenPart="/76"/>
   <Variable name="aget_experts"/>
-  <_1:AtomicPredicate expression="/74 /63" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/74 /63" sign=":"/>
   <_2:BecomesEqual leftExpression="/65" rightExpression="/74"/>
-  <amn:Operation name="OPERATION check_experts" substitution="/79" inputParams="/78" outputParams="/101"/>
+  <Variable name="dispatcher"/>
+  <_1:AtomicPredicate expression="/77 /79" sign=":"/>
+  <FunctionalExpression expression="/25" sign="POW"/>
+  <Variable name="specialist"/>
+  <_1:AtomicPredicate expression="/80 /82" sign=":"/>
+  <FunctionalExpression expression="/14" sign="POW"/>
+  <amn:Operation name="OPERATION check_experts" substitution="/85" inputParams="/84" outputParams="/109"/>
   <Variable name="av"/>
-  <_2:Precondition pre="/80" thenPart="/82"/>
-  <_1:Conjunction predicate="/81 /102"/>
-  <_1:AtomicPredicate expression="/25 /78" sign="Belongs"/>
-  <_2:Any any="/103 /89" where="/83" thenPart="/84"/>
-  <_1:Conjunction predicate="/85 /104 /90"/>
-  <_2:SequenceSubst substitution="/96"/>
-  <_1:Negation predicate="/98"/>
-  <BinaryOperator sign="GetFunc" expression="/87 /88"/>
+  <_2:Precondition pre="/86" thenPart="/88"/>
+  <_1:Conjunction predicate="/87 /110"/>
+  <_1:AtomicPredicate expression="/25 /84" sign=":"/>
+  <_2:Any any="/111 /96" where="/89" thenPart="/90"/>
+  <_1:Conjunction predicate="/92 /112 /97"/>
+  <_2:SequenceSubst substitution="/103"/>
+  <amn:Enum name="Boolean"/>
+  <_1:Negation predicate="/105"/>
+  <BinaryOperator sign="GetFuckingFunc" expression="/94 /95"/>
   <Variable name="experts_got"/>
-  <Variable name="av"/>
+  <Variable/>
   <Variable name="v1"/>
-  <_1:AtomicPredicate expression="/89 /14" sign="Belongs"/>
+  <_1:AtomicPredicate expression="/96 /14" sign=":"/>
   <Variable name="revi"/>
-  <_2:BecomesEqual leftExpression="/93" rightExpression="/89"/>
-  <BinaryOperator sign="()SetFunc" expression="/94 /95"/>
+  <_2:BecomesEqual leftExpression="/100" rightExpression="/96"/>
+  <BinaryOperator sign="()SetFunc" expression="/101 /102"/>
   <Variable name="experts"/>
   <Variable name="o"/>
-  <_2:Call actualParam="/97" operationName="set_experts"/>
-  <BinaryOperator sign="binaryCorrespondence" expression="/91 /89"/>
-  <_1:AtomicPredicate expression="/89 /86" sign="="/>
-  <_1:AtomicPredicate expression="/14 /25" sign="Inclusion SUBTYPE"/>
-  <FunctionalExpression sign="POW" expression="/14"/>
+  <_2:Call actualParam="/104" operationName="set_experts"/>
+  <BinaryOperator sign="|->" expression="/98 /96"/>
+  <_1:AtomicPredicate expression="/96 /93" sign="="/>
+  <_1:AtomicPredicate expression="/14 /25" sign="&lt;&lt;:"/>
+  <FunctionalExpression expression="/14" sign="POW"/>
+  <_1:AtomicPredicate expression="/80 /77" sign="&lt;:"/>
   <Variable name="revi"/>
-  <_1:AtomicPredicate expression="/101 /14" sign="Belongs to Datatype In operation"/>
+  <_1:AtomicPredicate expression="/109 /14" sign=":"/>
   <Variable name="v0"/>
-  <_1:AtomicPredicate expression="/103 /14" sign="Belongs to Datatype In operation"/>
+  <_1:AtomicPredicate expression="/111 /14" sign=":"/>
 </xmi:XMI>

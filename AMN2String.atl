@@ -26,6 +26,8 @@ helper context AMN!AbstractMachine def: toString() : String =
 	self.abstractVariables->iterate(i; acc : String ='\t'|acc+i.toString()+',\n\t') +	
 	'\nPROPERTIES\n\n' +
 	self.properties.toString() + 
+	'\nINVARIANT\n\n' +
+	self.invariant.toString() + 
 	'\nINITIALIZATION\n\n' +
 	self.initialization.toString() +
 	'\nOPERATION\n\n' +
@@ -90,4 +92,3 @@ helper context AMN!Operation def: toString() : String =
 	self.name + '(' + self.inputParams->iterate(i; acc : String =''|acc+i.toString()+',') + ')' + '\n' +
 	self.substitution.toString() + '\n' +
 	'END;';
-

@@ -16,9 +16,12 @@
   </syn-form:Negation>
   <syn-form:ArithmeticPredicate terms="/14 /13" symbol="=">
   </syn-form:ArithmeticPredicate>
-  <syn-form:GetFunction name="this.experts" attribute="/7"/>
+  <syn-form:GetFunction name="experts" terms="/20" attribute="/7"/>
   <syn-form:SetFunction name="revi.experts~" attribute="/6"/>
   <syn:ParameterDef name="is_exper" parameterKind="input" parameterOf="/10" type="/5"/>
   <syn:ParameterDef name="revi" parameterKind="output" parameterOf="/10" type="/2"/>
   <syn:StringDef name="string"/>
+  <syn:ClassDef name="dispatcher" instanceType="/3" subclasses="/19"/>
+  <syn:ClassDef name="specialist" instanceType="/2" superclasses="/18"/>
+  <syn-form:GetFunction name="revi" terms="/16"/>
 </xmi:XMI>

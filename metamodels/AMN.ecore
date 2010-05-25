@@ -72,7 +72,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringRepr" lowerBound="1"
           eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QuantifiedPredicate">
+    <eClassifiers xsi:type="ecore:EClass" name="QuantifiedPredicate" eSuperTypes="#//AMNPredicate/Predicate">
       <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
           eType="#//AMNPredicate/Predicate"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
@@ -84,7 +84,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1"
           eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Bracketed">
+    <eClassifiers xsi:type="ecore:EClass" name="Bracketed" eSuperTypes="#//AMNPredicate/Predicate">
       <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
           eType="#//AMNPredicate/Predicate"/>
     </eClassifiers>
@@ -111,7 +111,7 @@
           upperBound="2" eType="#//AMNPredicate/Predicate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniversallyQuantified" eSuperTypes="#//AMNPredicate/QuantifiedPredicate"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExistentialPredicate" eSuperTypes="#//AMNPredicate/QuantifiedPredicate"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExistentiallyQuantified" eSuperTypes="#//AMNPredicate/QuantifiedPredicate"/>
   </eSubpackages>
   <eSubpackages name="AMNExpression">
     <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
@@ -136,6 +136,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="FunctionalExpression" eSuperTypes="#//AMNExpression/OperationalExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
           upperBound="-1" eType="#//AMNExpression/Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sign" lowerBound="1"
+          eType="#//PrimitiveTypes/String"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//AMNExpression/Expression">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
