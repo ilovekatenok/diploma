@@ -2,13 +2,13 @@
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:syn="http://Synthesis.ecore" xmlns:syn-form="http://Synthesis.ecore/Formulae">
   <syn:SchemaDef name="AgencySchema" modules="/1"/>
   <syn:ModuleDef name="Agency" containedTypes="/2 /3 /4 /5" schema="/0"/>
-  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4" attributes="/6 /7 /8 /11" supertypes="/3"/>
-  <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /9 /12" subtypes="/2"/>
+  <syn:ADTDef name="Specialist" typeInModule="/1" values="/4" attributes="/7 /11" supertypes="/3"/>
+  <syn:ADTDef name="Dispatcher" typeInModule="/1" attributes="/10 /9 /12 /8 /6" subtypes="/2"/>
   <syn:SetDef typeOfValue="/2" name="SetOfSpecialist" typeInModule="/1" ofType="/2"/>
   <syn:EnumDef name="Boolean" typeInModule="/1"/>
-  <syn:AttributeDef name="experts" attributeOf="/2" type="/4"/>
+  <syn:AttributeDef name="experts" attributeOf="/3" type="/4"/>
   <syn:AttributeDef name="experts_got" attributeOf="/2" type="/5"/>
-  <syn:AttributeDef name="get_experts" attributeOf="/2"/>
+  <syn:AttributeDef name="get_experts" attributeOf="/3"/>
   <syn:AttributeDef name="check_experts" attributeOf="/3" type="/10"/>
   <syn:FunctionDef name="checkExpertFunction" parameters="/15 /16" predicativeSpec="/11">
   </syn:FunctionDef>
@@ -17,11 +17,13 @@
   <syn-form:ArithmeticPredicate terms="/14 /13" symbol="=">
   </syn-form:ArithmeticPredicate>
   <syn-form:GetFunction name="experts" terms="/20" attribute="/7"/>
-  <syn-form:SetFunction name="revi.experts~" attribute="/6"/>
+  <syn-form:SetFunction name="experts" terms="/13" attribute="/6"/>
   <syn:ParameterDef name="is_exper" parameterKind="input" parameterOf="/10" type="/5"/>
   <syn:ParameterDef name="revi" parameterKind="output" parameterOf="/10" type="/2"/>
   <syn:StringDef name="string"/>
   <syn:ClassDef name="dispatcher" instanceType="/3" subclasses="/19"/>
   <syn:ClassDef name="specialist" instanceType="/2" superclasses="/18"/>
-  <syn-form:GetFunction name="revi" terms="/16"/>
+  <syn-form:GetFunction name="revi" terms="/21"/>
+  <syn-form:GetFunction name="getFunc" attribute="/7"/>
+  <syn-form:Variable/>
 </xmi:XMI>

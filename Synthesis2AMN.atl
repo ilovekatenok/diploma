@@ -279,6 +279,39 @@ rule attribute2ATDMachineSections {
 	}
 }
 
+rule attributeTypeStringExp(attr : Synthesis!AttributeDef, stringVal : String) {
+	to
+		funcExp : AMN!StringValue (
+			value <- stringVal
+		)
+	do {
+		thisModule.resolveTemp(attr, 'totalFunction').expression <- funcExp;
+		thisModule.resolveTemp(attr, 'rightExpPartial').expression <- funcExp;
+	}
+}
+
+rule attributeTypeSetDef(attr : Synthesis!AttributeDef) {
+	to
+		funcExp : AMN!FunctionalExpression (
+			sign <- 'POW',
+			expression <- thisModule.resolveTemp(attr.type.ofType, 'ext')
+		)
+	do {
+		thisModule.resolveTemp(attr, 'totalFunction').expression <- funcExp;
+		thisModule.resolveTemp(attr, 'rightExpPartial').expression <- funcExp;
+	}
+}
+
+rule seesPredefinedMachine ( attr : Synthesis!AttributeDef,amName : String) {
+	to
+		abstrMachine : AMN!AbstractMachine (
+			name <- amName
+		)
+	do {
+		thisModule.resolveTemp(attr.attributeOf, 'am').sees <- abstrMachine;
+	}
+}
+
 rule class2Variable {
 	from 
 		class : Synthesis!ClassDef(class.oclIsTypeOf(Synthesis!ClassDef))
@@ -315,39 +348,6 @@ rule genSubclassSuperclassPredicate(class : Synthesis!ClassDef, superclass : Syn
 		)
 	do {
 		thisModule.resolveTemp(class.instanceType,'predicate').predicate <- atomPred;
-	}
-}
-
-rule attributeTypeStringExp(attr : Synthesis!AttributeDef, stringVal : String) {
-	to
-		funcExp : AMN!StringValue (
-			value <- stringVal
-		)
-	do {
-		thisModule.resolveTemp(attr, 'totalFunction').expression <- funcExp;
-		thisModule.resolveTemp(attr, 'rightExpPartial').expression <- funcExp;
-	}
-}
-
-rule attributeTypeSetDef(attr : Synthesis!AttributeDef) {
-	to
-		funcExp : AMN!FunctionalExpression (
-			sign <- 'POW',
-			expression <- thisModule.resolveTemp(attr.type.ofType, 'ext')
-		)
-	do {
-		thisModule.resolveTemp(attr, 'totalFunction').expression <- funcExp;
-		thisModule.resolveTemp(attr, 'rightExpPartial').expression <- funcExp;
-	}
-}
-
-rule seesPredefinedMachine ( attr : Synthesis!AttributeDef,amName : String) {
-	to
-		abstrMachine : AMN!AbstractMachine (
-			name <- amName
-		)
-	do {
-		thisModule.resolveTemp(attr.attributeOf, 'am').sees <- abstrMachine;
 	}
 }
 
@@ -465,8 +465,16 @@ rule collectionComprehension2SetComprehension {
 	to
 		amnSetCompr : AMN!SetComprehension (
 			variable <- synthCollCompr.vars,
-			predicate <- synthCollCompr.formula
+			predicate <- conjunction
+		),
+		conjunction : AMN!Conjunction (
+			predicate <- synthCollCompr.formula	
 		)
+	do {
+		for ( var in  synthCollCompr.vars) {
+			thisModule.genVarTyping( var, synthCollCompr );
+		}
+	}
 }
 
 rule synthVar2AMNVar {
@@ -547,37 +555,40 @@ lazy rule quantVarsToTypedVarPredicate {
 
 rule getFunction2AMNExpression {
 	from 
-		synthGetFunction : Synthesis!GetFunction(
-												synthGetFunction.isRootFunction()
-												--synthGetFunction.oclIsTypeOf(Synthesis!GetFunction)
-												)
+		synthGetFunction : Synthesis!GetFunction(synthGetFunction.oclIsTypeOf(Synthesis!GetFunction))
 	to 
-		expression : AMN!BinaryOperator (
-			sign <- 'GetFuckingFunc',
-			expression <- Sequence {varAttr,varObjType}
+		functionalExp : AMN!FunctionalExpression (
+			sign <- 'GetFunction',
+			expression <- namedVar
 		),
-		varAttr : AMN!Variable (
-			name <- synthGetFunction.attribute.name
-		),
-		varObjType : AMN!Variable (
+		namedVar : AMN!Variable (
+			name <- synthGetFunction.name	
 		)
 	do {
-		if ( synthGetFunction.name.startsWith('this') ) {
-			varObjType.name <- 'av';
+		for ( term in  synthGetFunction.terms) {
+			if ( term.oclIsTypeOf(Synthesis!GetFunction) ) {
+				functionalExp.expression <- thisModule.resolveTemp(term,'functionalExp');
+			}
 		}
-		for ( funcAttr in Synthesis!AttributeDef.allInstances()->select(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
+		if ( not synthGetFunction.attribute.oclIsUndefined() ) {
+			for ( funcAttr in Synthesis!AttributeDef.allInstances()->select(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
 																	then true
 																	else false
 																	endif)) {
-			for ( atom in funcAttr.type.predicativeSpec.splitToAtoms()) {
-				for ( term in atom.terms ) {
-					if ( term.oclIsTypeOf(Synthesis!GetFunction) ) {
-						if ( term.name = synthGetFunction.name ) {						
-							if ( funcAttr.attributeOf <> synthGetFunction.attribute.attributeOf ) {
-								if ( not thisModule.resolveTemp(funcAttr.attributeOf, 'am').sees->
-											exists(m|m.name = thisModule.resolveTemp(synthGetFunction.attribute.attributeOf, 'am').name) ) {
-								thisModule.resolveTemp(funcAttr.attributeOf, 'am').sees <-
-								thisModule.resolveTemp(synthGetFunction.attribute.attributeOf, 'am');
+				for ( atom in funcAttr.type.predicativeSpec.splitToAtoms()) {
+					for ( term in atom.terms ) {
+						if ( term.oclIsTypeOf(Synthesis!GetFunction) ) {
+							if ( term.name = synthGetFunction.name ) {						
+								if ( funcAttr.attributeOf <> synthGetFunction.attribute.attributeOf ) {
+									if ( not thisModule.resolveTemp(funcAttr.attributeOf, 'am').sees->
+												exists(m|m.name = thisModule.resolveTemp(synthGetFunction.attribute.attributeOf, 'am').name) 
+									     and
+										 not thisModule.resolveTemp(funcAttr.attributeOf, 'am').includes->
+												exists(m|m.name = thisModule.resolveTemp(synthGetFunction.attribute.attributeOf, 'am').name)
+									    ) {
+									thisModule.resolveTemp(funcAttr.attributeOf, 'am').sees <-
+									thisModule.resolveTemp(synthGetFunction.attribute.attributeOf, 'am');
+									}
 								}
 							}
 						}
@@ -600,22 +611,16 @@ rule setFunction2AMNExpression {
 			expression <- var,
 			expression <- thisModule.resolveTemp(synthSetFunction.attribute.attributeOf, 'ext')
 		),
-		varParam : AMN!Variable (
-			name <- synthSetFunction.name.split('\\.')->first()
-		),
 		varSubstBecomesEqual : AMN!BecomesEqual (
-			leftExpression <- leftExpBecomes,
+			leftExpression <- functionalExp,
 			rightExpression <- var
 		),
-		leftExpBecomes : AMN!BinaryOperator (
-			sign <- '()SetFunc',
-			expression <- Sequence {varAttr,varObjType}
+		functionalExp : AMN!FunctionalExpression (
+			sign <- 'SetFunction',
+			expression <- namedVar
 		),
-		varAttr : AMN!Variable (
-			name <- synthSetFunction.attribute.name			
-		),
-		varObjType : AMN!Variable (
-			name <- 'o'
+		namedVar : AMN!Variable (
+			name <- synthSetFunction.name	
 		),
 		setExternalVar : AMN!Call (
 			operationName <- 'set_' + synthSetFunction.attribute.name, 
@@ -623,9 +628,14 @@ rule setFunction2AMNExpression {
 		),
 		actualParamExp : AMN!BinaryOperator (
 			sign <- '|->',
-			expression <- Sequence {varParam,var}			
+			expression <- Sequence {functionalExp,var}			
 		)
 	do {
+		for ( term in  synthSetFunction.terms) {
+			if ( term.oclIsTypeOf(Synthesis!GetFunction) ) {
+				functionalExp.expression <- thisModule.resolveTemp(term,'functionalExp');
+			}
+		}
 		thisModule.counter <- thisModule.counter + 1;
 		for ( funcAttr in Synthesis!AttributeDef.allInstances()->select(m | if m.type.oclIsTypeOf(Synthesis!FunctionDef)
 																	then true
@@ -783,11 +793,11 @@ rule genDiffer(builtIn : Synthesis!BuiltInFunction) {
 		)
 }
 
-rule arithmeticPredicate2AtomicPredicate {
+rule arithmeticPredicate2BinaryOperator {
 	from
 		arithmPred : Synthesis!ArithmeticPredicate(arithmPred.oclIsTypeOf(Synthesis!ArithmeticPredicate))
 	to 
-		atomPred : AMN!AtomicPredicate (
+		atomPred : AMN!BinaryOperator (
 			sign <- arithmPred.symbol,
 			expression <- arithmPred.terms
 		)
